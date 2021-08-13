@@ -56,7 +56,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { user } = this.state
+		const { user, userProfile } = this.state
 		return (
 			<>
 			<ThemeProvider theme={theme}>
@@ -71,12 +71,23 @@ class App extends Component {
           			<Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
         		</Route>
 				<Route 
+					exact path="/users"
+					render={()=> 
+						authService.getUser() ? 
+						<ProfileList
+							userProfile={userProfile}
+							handleAddFriend={this.handleAddFriend}
+							handleRemoveFriend={this.handleRemoveFriend}
+						/>
+						 : <Redirect to='/login'/>
+				}/>
+				<Route 
 					exact path='/profile'
 					render={({ location })=> 
 						authService.getUser() ?
 						<ProfileDetails
 							location={location}
-							userProfile={this.userProfile}
+							userProfile={userProfile}
 						/> : <Redirect to='/login' />
 					}
 				/>
