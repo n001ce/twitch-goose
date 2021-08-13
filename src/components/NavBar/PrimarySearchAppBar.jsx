@@ -35,10 +35,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   titleLink:{
-      textDecoration: 'none',
-      fontSize: '25px',
+    color:theme.palette.secondary.main,
+    textDecoration: 'none',
+    fontSize: '25px',
   },
   navLink:{
+    color:theme.palette.secondary.main,
     textDecoration: 'none',
     fontSize: '18px',
     padding: '10px'
