@@ -2,16 +2,16 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 export {
-  GameReview
+  review
 }
 
-const gameReviewSchema = new Schema({
+const reviewSchema = new Schema({
   rating: {type: Number, min: 1, max: 5},
   content: String,
-  game: { type: Schema.Types.ObjectId, ref: "Game" },
+  streamer: { type: Schema.Types.ObjectId, ref: "Streamer" },
   author: { type: Schema.Types.ObjectId, ref: "Profile" },
 },{
   timestamps: true,
 })
 
-const GameReview = mongoose.model("GameReview", gameReviewSchema)
+const review = mongoose.model("Review", reviewSchema)
