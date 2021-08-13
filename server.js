@@ -5,10 +5,11 @@ import { fileURLToPath } from 'url'
 import logger from 'morgan'
 import cors from 'cors'
 
-import { router as usersRouter } from './routes/users.js'
+import { router as usersRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as gamesRouter } from './routes/games.js'
 import { router as reviewsRouter } from './routes/reviews.js'
+import {router as streamerRouter} from './routes/streamers.js'
 
 
 import('./config/database.js')
@@ -24,6 +25,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/auth', authRouter)
 app.use('/games', gamesRouter)
 app.use('/reviews', reviewsRouter)
+app.use('/streamers', streamerRouter)
 
 
 
