@@ -6,13 +6,11 @@ export {
 }
 
 const gameSchema = new Schema({
-  name: String,
-  rawgId: Number,
-  released: Date,
+  game_id: Number,
+  game_name: String,
   imageUrl: String,
+  box_art_url: String,
   collectedBy: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
-  // To be filled in later
-  reviews: [{type: Schema.Types.ObjectId, ref: "GameReview"}],
 },{
   timestamps: true,
 });
