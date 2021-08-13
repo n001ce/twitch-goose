@@ -1,6 +1,6 @@
 import React from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu} from '@material-ui/core';
+import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -126,7 +126,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
   return (
       <> 
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={1}>
         <Toolbar>
         <IconButton
             edge="start"
@@ -136,7 +136,9 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
           >
             <MenuIcon />
           </IconButton>
-          <Link to="/" className={classes.titleLink}>Twitch Goose</Link>
+          <Typography className={classes.titleLink} variant="h6" noWrap component={Link} to='/'>
+          Twitch Goose
+          </Typography>
           {user? (
           <>
           <div className={classes.grow} />
