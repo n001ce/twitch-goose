@@ -1,6 +1,6 @@
 import React from 'react'
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { InputBase, IconButton, FormControl, InputLabel, NativeSelect, FormHelperText } from '@material-ui/core';
+import { InputBase, IconButton, NativeSelect } from '@material-ui/core';
 // import {IconButton} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -8,9 +8,9 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        backgroundColor: alpha(theme.palette.common.black, 0.05),
         '&:hover': {
-          backgroundColor: alpha(theme.palette.common.white, 0.25),
+          backgroundColor: alpha(theme.palette.common.black, 0.10),
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,
@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
       },
       inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -56,15 +55,14 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     select: {
-        color:"white",
         borderColor:'0',
-        textDecoration:'none',
+        borderBottom: "none",
         '&:before': {
-            borderColor: "white",
+            borderBottom: "none",
         },
         '&:after': {
-            borderColor: "white",
-        }
+            borderBottom: "none",
+        },
     },
      
  
@@ -91,16 +89,16 @@ return(
                 />
         {/* <FormControl className={classes.formControl}> */}
         <NativeSelect
-          defaultValue="movie"
+          defaultValue="game"
           className={classes.select}
           inputProps={{
-              id: 'movieChoice',
+              id: 'gameChoice',
             }}
             name= 'type'
             onChange={handleChange}
         >
-          <option value="movie" >Movie</option>
-          <option value="tv">TV</option>
+          <option value="game" >Game</option>
+          <option value="streamer">Sreamer</option>
         </NativeSelect>
 
           <IconButton type="submit"
