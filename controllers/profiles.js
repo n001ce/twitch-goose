@@ -41,10 +41,8 @@ function unfriend(req, res) {
 
 function index(req, res) {
   Profile.find({})
-  .populate('games')
-  .populate('streamers')
-  .populate('friends')
   .then(profiles => {
+    console.log(profiles)
     res.json(profiles)
   })
 }
