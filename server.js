@@ -5,7 +5,8 @@ import { fileURLToPath } from 'url'
 import logger from 'morgan'
 import cors from 'cors'
 
-import { router as usersRouter } from './routes/profiles.js'
+import { router as profilesRouter } from './routes/profiles.js'
+
 import { router as authRouter } from './routes/auth.js'
 import { router as gamesRouter } from './routes/games.js'
 import { router as reviewsRouter } from './routes/reviews.js'
@@ -21,7 +22,7 @@ app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 
-app.use('/api/users', usersRouter)
+app.use('/api/profiles', profilesRouter);
 app.use('/api/auth', authRouter)
 app.use('/games', gamesRouter)
 app.use('/reviews', reviewsRouter)
