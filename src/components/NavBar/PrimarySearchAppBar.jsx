@@ -177,6 +177,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
                     < >
           <div className={classes.grow} />
           <Link to="/users" className={classes.navLink}>Users</Link>
+          <Link to="/games" className={classes.navLink}>Games</Link>
           <Link to="/signup" className={classes.navLink}>Sign Up</Link>
           <Link to="/login" className={classes.navLink}>Log In</Link>
                     </>

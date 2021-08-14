@@ -11,4 +11,4 @@ const router = Router()
 
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, gamesCtrl.index)
-router.get('/search/:name')
+router.get('/search/:name',checkAuth, gamesCtrl.search)

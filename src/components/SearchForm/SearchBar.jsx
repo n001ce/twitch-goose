@@ -97,11 +97,11 @@ return(
             onChange={handleChange}
         >
           <option value="game" >Game</option>
-          <option value="streamer">Sreamer</option>
+          <option value="streamer">Streamer</option>
         </NativeSelect>
 
           <IconButton type="submit"
-        disabled={state.invalidForm}>
+            disabled={state.invalidForm}>
           <SearchIcon className="searchIcon"/>
           </IconButton>
 
