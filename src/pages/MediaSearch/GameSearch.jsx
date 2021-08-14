@@ -17,7 +17,7 @@ class GameSearch extends Component {
   async componentDidUpdate(prevProps) {
     const { params } = this.props.match
     if (params.query !== prevProps.match.params.query){
-        const searchResults = await mediaAPI.search('games', params.query)
+        const searchResults = await mediaAPI.search('games?', params.query)
         this.setState({ searchResults: searchResults.results })
       }
   }
@@ -27,13 +27,13 @@ class GameSearch extends Component {
       <>
         <h1>Game Results</h1>
         {/* {this.state.searchResults.map(game =>
-        //   <GameCard
-        //   movie={game}
-        //   key={game.id}
-        //   userProfile={this.props.userProfile}
-        //   handleAddMedia={this.props.handleAddMedia}
-        //   handleRemoveMedia={this.props.handleRemoveMedia}
-        // />
+          <GameCard
+          movie={game}
+          key={game.id}
+          userProfile={this.props.userProfile}
+          handleAddMedia={this.props.handleAddMedia}
+          handleRemoveMedia={this.props.handleRemoveMedia}
+        />
         )} */}
       </>  
     );
