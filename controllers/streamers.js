@@ -27,7 +27,7 @@ function addStreamer(req, res) {
           .then(streamer => {
             profile.streamer.push(streamer._id)
             profile.save()
-            profile.populate('streamer').populate('games').populate('friends').execPopulate()
+            profile.populate('streamers').populate('games').populate('friends').execPopulate()
             .then((profile) => {
               res.json(profile)
             })
@@ -37,7 +37,7 @@ function addStreamer(req, res) {
           .then(streamer => {
             profile.streamer.push(streamer._id)
             profile.save()
-            profile.populate('streamer').populate('games').populate('friends').execPopulate()
+            profile.populate('streamers').populate('games').populate('friends').execPopulate()
             .then((profile) => {
               res.json(profile)
             })
@@ -58,7 +58,7 @@ function removeStreamer(req, res) {
         let streamerIdx = profile.media.findIndex(streamer => streamer.id === req.body.api_id)
         profile.streamer.splice(streamerIdx, 1)
         profile.save()
-        profile.populate('streamer').populate('games').populate('friends').execPopulate()
+        profile.populate('streamers').populate('games').populate('friends').execPopulate()
         .then(()=> res.json(profile))
       })
     })

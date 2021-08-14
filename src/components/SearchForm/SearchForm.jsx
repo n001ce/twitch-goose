@@ -6,6 +6,7 @@ class Search extends Component {
   state = {
     invalidForm: true,
 		formData: {
+      type:{default : "games"},
       query: ''
 		},
   }
@@ -22,7 +23,7 @@ class Search extends Component {
 
   handleSubmit = e => {
 		e.preventDefault();
-    this.props.history.push(`/search/${this.state.formData.query}`)
+    this.props.history.push(`/search/${this.state.formData.type}/${this.state.formData.query}`)
   };
   
   render() {

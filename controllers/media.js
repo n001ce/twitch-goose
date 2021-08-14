@@ -1,22 +1,27 @@
-import axios from "axios"
 import { Profile } from '../models/profile.js'
 import { Game } from '../models/game.js'
+import { Streamer } from '../models/streamer.js'
 import api from '../config/api.js'
 
 export {
   index,
-  addGame,
+  addMedia,
   search,
+  getClip
 }
 
 
 
-function addGame (req, res) {
+function addMedia(req, res) {
+  
+}
+
+function getClip(req,res){
   
 }
 
 function search(req, res) {
-  api.get(`https://api.twitch.tv/helix/games?name=${req.params.query}`)
+  api.get(`https://api.twitch.tv/helix/${req.params.type}?name=${req.params.query}`)
   .then(response => {
     console.log(response.data)
     res.json(response.data)
@@ -26,7 +31,7 @@ function search(req, res) {
 
 
 function index(req, res) {
-  api.get(`https://api.twitch.tv/helix/games/top`)
+  api.get(`https://api.twitch.tv/helix/${req.params.type}`)
   .then(response => {
     console.log(response.data)
     res.json(response.data)
