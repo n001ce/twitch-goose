@@ -7,12 +7,21 @@ export {
   index,
   addGame,
   search,
+  getClip
 }
 
 
 
 function addGame (req, res) {
   
+}
+
+function getClip(req,res){
+  api.get(`https://api.twitch.tv/helix/games?name=${req.params}`)
+  .then(response => {
+    console.log(response.data)
+    res.json(response.data)
+  })
 }
 
 function search(req, res) {
