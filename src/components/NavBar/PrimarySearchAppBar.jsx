@@ -12,6 +12,7 @@ import SearchForm from '../SearchForm/SearchForm'
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    height:'70px',
   },
   menuButton: {
     marginRight: theme.spacing(2),
