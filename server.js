@@ -1,4 +1,5 @@
 import 'dotenv/config.js'
+
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -16,6 +17,7 @@ import {router as streamerRouter} from './routes/streamers.js'
 import('./config/database.js')
 
 const app = express()
+
 
 app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)),'build')))
 app.use(cors())

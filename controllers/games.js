@@ -1,29 +1,32 @@
 import axios from "axios"
 import { Profile } from '../models/profile.js'
 import { Game } from '../models/game.js'
+import api from '../config/api.js'
 
 export {
   index,
   addGame,
-  removeGame,
+  search,
 }
 
-const headers={
-  'Authorization' : `Bearer ${process.env.ACCESS_TOKEN}`
-}
+
 
 function addGame (req, res) {
   
 }
 
-function removeGame(req, res) {
-
+function search(req, res) {
+  api.get(`https://api.twitch.tv/helix/games?name=${req.params.query}`)
+  .then(response => {
+    console.log(response.data)
+    res.json(response.data)
+  })
 }
 
 
 
 function index(req, res) {
-  axios.get(`https://api.twitch.tv/helix/games/top`, {headers})
+  api.get(`https://api.twitch.tv/helix/games/top`)
   .then(response => {
     console.log(response.data)
     res.json(response.data)
