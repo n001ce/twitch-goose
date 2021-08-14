@@ -26,7 +26,7 @@ app.use(express.json())
 
 app.use('/api/profiles', profilesRouter);
 app.use('/api/auth', authRouter)
-app.use('/games', gamesRouter)
+app.use('/api/games', gamesRouter)
 app.use('/reviews', reviewsRouter)
 app.use('/streamers', streamerRouter)
 

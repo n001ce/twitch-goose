@@ -8,7 +8,7 @@ import * as authService from '../../services/authService'
 import * as profileAPI from '../../services/profileService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
-
+import GameIndex from '../GameSearch/GameIndex'
 import {createTheme, ThemeProvider} from '@material-ui/core'
 import { orange } from '@material-ui/core/colors'
 
@@ -94,6 +94,15 @@ class App extends Component {
 							location={location}
 							userProfile={userProfile}
 						/> : <Redirect to='/login' />
+					}
+				/>
+				<Route 
+					exact path='/search/game/:query'
+					render={({ match })=> 
+						<GameIndex 
+							match={match}
+							userProfile={userProfile}
+						/>
 					}
 				/>
 				

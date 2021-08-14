@@ -11,4 +11,4 @@ const router = Router()
 
 router.use(decodeUserFromToken)
 router.get('/',  gamesCtrl.index)
-router.get('/search/:name', gamesCtrl.search)
+router.get('/search/:query', gamesCtrl.search)
