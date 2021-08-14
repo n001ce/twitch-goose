@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import * as gameAPI from '../../services/gameService'
-// import GameCard from '../../components/GameCard/GameCard'
+import * as mediaAPI from '../../services/mediaService'
+// import mediaCard from '../../components/GameCard/GameCard'
 
-class GameIndex extends Component {
+class GameSearch extends Component {
   state = {
     searchResults: []
   }
 
   async componentDidMount() {
     const { params } = this.props.match
-    const searchResults = await gameAPI.search(params.query)
+    const searchResults = await mediaAPI.search('games', params.query)
     this.setState({ searchResults: searchResults.results })
     console.log(searchResults.results)
   }
@@ -17,7 +17,7 @@ class GameIndex extends Component {
   async componentDidUpdate(prevProps) {
     const { params } = this.props.match
     if (params.query !== prevProps.match.params.query){
-        const searchResults = await gameAPI.search(params.query)
+        const searchResults = await mediaAPI.search('games', params.query)
         this.setState({ searchResults: searchResults.results })
       }
   }
@@ -40,4 +40,4 @@ class GameIndex extends Component {
   }
 }
  
-export default GameIndex;
+export default GameSearch;

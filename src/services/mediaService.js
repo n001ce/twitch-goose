@@ -1,8 +1,8 @@
 import * as tokenService from "./tokenService"
-const BASE_URL = "/api/games/"
+const BASE_URL = "/api/media/"
 
 export function search(type, query) {
-  return fetch(`${BASE_URL}search/${query}`, {
+  return fetch(`${BASE_URL}search/${type}/${query}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -11,13 +11,13 @@ export function search(type, query) {
 }
 
 
-export function addGame(game) {
+export function addMedia(media) {
   return fetch(
-    `${BASE_URL}addGame`,
+    `${BASE_URL}addMedia`,
     {
       method: 'POST',
       headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
-      body: JSON.stringify(game)
+      body: JSON.stringify(media)
     },
     { mode: "cors" })
   .then((res) => res.json())

@@ -7,11 +7,9 @@ import logger from 'morgan'
 import cors from 'cors'
 
 import { router as profilesRouter } from './routes/profiles.js'
-
 import { router as authRouter } from './routes/auth.js'
-import { router as gamesRouter } from './routes/games.js'
+import { router as mediaRouter } from './routes/media.js'
 import { router as reviewsRouter } from './routes/reviews.js'
-import {router as streamerRouter} from './routes/streamers.js'
 
 
 import('./config/database.js')
@@ -26,9 +24,9 @@ app.use(express.json())
 
 app.use('/api/profiles', profilesRouter);
 app.use('/api/auth', authRouter)
-app.use('/games', gamesRouter)
+app.use('/media', mediaRouter)
 app.use('/reviews', reviewsRouter)
-app.use('/streamers', streamerRouter)
+
 
 
 
