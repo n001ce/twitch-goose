@@ -1,15 +1,11 @@
 import React from 'react';
-import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
-import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, Avatar, Drawer, Divider, List, CssBaseline} from '@material-ui/core';
+import { alpha, makeStyles } from '@material-ui/core/styles';
+import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, CssBaseline} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+
 
 import { Link } from 'react-router-dom'
 import SearchForm from '../SearchForm/SearchForm'
@@ -56,33 +52,6 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerContainer:{
-    marginTop:'70px',
-    width: drawerWidth,
-    padding: theme.spacing(2),
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-},
-arrowIcon:{
-    paddingTop:'70px',
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-content: {
-  flexGrow: 1,
-  padding: theme.spacing(3),
-},
 }));
 
 export default function PrimarySearchAppBar({ user, handleLogout, history }) {
@@ -229,10 +198,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
       {renderMobileMenu}
       {renderMenu}
     </div>
-    <div className={classes.root}>
-         
-      
-        </div>
+    
       </>
   );
 }

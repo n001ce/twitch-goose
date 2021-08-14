@@ -9,6 +9,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 const drawerWidth = 240;
 
@@ -56,11 +58,25 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    lists:{
+      display:'flex',
+    },
+    avatar: {
+      margin:'10px',
+      width: '40px',
+    },
+    spacer: {
+      margin:'10px',
+      width: '40px',
+    },
+    listText: {
+      margin:'10px',
+      padding: '10px',
+    },
   }));
 
 const MyProfileBar = ({ userProfile }) => {
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(true);
 
     const handleDrawerOpen = () => {
@@ -106,26 +122,29 @@ const MyProfileBar = ({ userProfile }) => {
           </IconButton>
         </div>
         <div className={classes.drawerContainer}>
+          <div className={classes.lists}>
+        <Avatar className={classes.avatar} alt="User Avatar" src={userProfile.avatar} variant="rounded"/>
+        <h3 className={classes.listText} >{userProfile.name}</h3>
+          </div>
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary='Drafts'/>
               </ListItem>
             ))}
           </List>
           <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+            {userProfile.friends.map((pl) => (
+              <ListItem button key={pl._id}>
+                <ListItemIcon> <AccountCircle/> </ListItemIcon>
+                <ListItemText primary={pl.name} />
               </ListItem>
             ))}
           </List>
         </div>
-      </Drawer>        <Avatar alt="User Avatar" src={userProfile.avatar} variant="rounded"/>
-        <h3>{userProfile.name}</h3>
+      </Drawer>        
         </div>
         </>
     );
