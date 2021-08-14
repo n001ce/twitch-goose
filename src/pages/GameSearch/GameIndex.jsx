@@ -11,7 +11,6 @@ class GameIndex extends Component {
     const { params } = this.props.match
     const searchResults = await mediaAPI.search("game", params.query)
     this.setState({ searchResults: searchResults })
-    console.log(searchResults.results)
   }
 
   async componentDidUpdate(prevProps) {

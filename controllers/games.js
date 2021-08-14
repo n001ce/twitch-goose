@@ -27,7 +27,6 @@ function getClip(req,res){
 function search(req, res) {
   api.get(`https://api.twitch.tv/helix/games?name=${req.params.query}`)
   .then(response => {
-    console.log(response.data.data)
     res.json(response.data.data)
   })
 }
