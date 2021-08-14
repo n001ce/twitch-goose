@@ -1,17 +1,21 @@
 import React from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography} from '@material-ui/core';
+import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, CssBaseline} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
 
+
 import { Link } from 'react-router-dom'
 import SearchForm from '../SearchForm/SearchForm'
+
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    height:'70px',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -35,14 +39,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   titleLink:{
-      textDecoration: 'none',
-      fontSize: '25px',
+    color:theme.palette.secondary.main,
+    textDecoration: 'none',
+    fontSize: '25px',
   },
   navLink:{
+    color:theme.palette.secondary.main,
     textDecoration: 'none',
     fontSize: '18px',
     padding: '10px'
-  }
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
 }));
 
 export default function PrimarySearchAppBar({ user, handleLogout, history }) {
@@ -126,7 +135,8 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
   return (
       <> 
     <div className={classes.grow}>
-      <AppBar position="static" elevation={1}>
+    <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar} elevation={1}>
         <Toolbar>
         <IconButton
             edge="start"
@@ -149,6 +159,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <Link to="/games" className={classes.navLink}>Games</Link>
             <Link to="/users" className={classes.navLink}>Users</Link>
             <IconButton
               edge="end"
@@ -187,6 +198,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
       {renderMobileMenu}
       {renderMenu}
     </div>
+    
       </>
   );
 }

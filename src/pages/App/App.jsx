@@ -19,7 +19,12 @@ const theme = createTheme({
 			main:'#fafafa'
 		},
 		secondary: orange,
-	}
+	},
+	zIndex: {
+		appBar: 1251,
+		modal: 1250,
+		drawer: 1200,
+	  }
 })
 
 class App extends Component {
@@ -85,7 +90,7 @@ class App extends Component {
 					exact path='/profile'
 					render={({ location })=> 
 						authService.getUser() ?
-						<ProfileDetails
+						<ProfileDetails 
 							location={location}
 							userProfile={userProfile}
 						/> : <Redirect to='/login' />
