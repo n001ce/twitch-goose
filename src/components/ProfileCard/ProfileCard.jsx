@@ -1,10 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Avatar, Card, CardActionArea, Box, List, CssBaseline, Typography, Divider, IconButton, MenuIcon } from '@material-ui/core';
+import {Avatar, Card, CardActionArea, Box, List, CssBaseline, Typography, Divider, IconButton, MenuIcon, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-
+  cardContainer:{
+    width:'200px',
+    margin:'auto',
+    textAlign:'center',
+  },
+  avatar:{
+    margin:'auto',
+  }
 }));
 
 const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend }) => {
@@ -12,10 +19,9 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
 
   return (
     <>
-    <Box m={3} >
+    <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
     <Card className={classes.root} >
       <Box m={5} >
-    <CardActionArea>
     <Avatar className={classes.avatar} alt="User Avatar" src={userProfile.avatar} variant="rounded"/>
       <Link
         to={{
@@ -26,13 +32,19 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
         <h4>{profile.name}</h4>
 
       </Link>
-    </CardActionArea>
+      <Divider/>
+      <Box m={1} >
+      <Button variant="contained" color="secondary" component={Link} to={{
+          pathname: '/profile',
+          state: {profile}
+        }}>Details</Button>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleAddFriend(profile._id)}>Befriend {profile.name}</button> 
+      <Button variant="contained" color="secondary" onClick={() => handleAddFriend(profile._id)}>Befriend {profile.name}</Button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleRemoveFriend(profile._id)}>Defriend {profile.name}</button> 
+      <Button variant="contained" color="secondary" onClick={() => handleRemoveFriend(profile._id)}>Defriend {profile.name}</Button> 
       }   
+      </Box>
       </Box>
     </Card>
     </Box>
