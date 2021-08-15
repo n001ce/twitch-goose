@@ -20,7 +20,7 @@ function getClip(req,res){
 }
 
 function searchGames(req, res) {
-  api.get(`https://api.twitch.tv/helix/${req.params.type}?name=${req.params.query}`)
+  api.get(`https://api.twitch.tv/helix/search/categories?query=${req.params.query}`)
   .then(response => {
     res.json(response.data.data)
   })

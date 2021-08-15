@@ -8,7 +8,7 @@ class GameDetails extends Component {
   }
 
   async componentDidMount() {
-    const searchResult = await mediaAPI.searchOne('game', this.props.match.params.id)
+    const searchResult = await mediaAPI.searchGames('game', this.props.match.params.id)
     this.setState({searchResult})
   }
 
