@@ -6,7 +6,7 @@ class Search extends Component {
   state = {
     invalidForm: true,
 		formData: {
-      type:{default : "games"},
+      type:'',
       query: ''
 		},
   }
