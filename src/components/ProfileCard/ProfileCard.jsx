@@ -7,12 +7,16 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
 const useStyles = makeStyles((theme) => ({
   cardContainer:{
-    width:'200px',
+    width:'220px',
     margin:'auto',
     textAlign:'center',
   },
   avatar:{
     margin:'auto',
+  },
+  buttons:{
+    fontSize:'13px',
+    margin:'5px',
   }
 }));
 
@@ -23,28 +27,21 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
     <>
     <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
     <Card className={classes.root} >
-      <Box m={5} >
+      <Box m={1} pt={2}>
     <Avatar className={classes.avatar} alt="User Avatar" src={userProfile.avatar} variant="rounded"/>
-      <Link
-        to={{
-          pathname: '/profile',
-          state: {profile}
-        }}
-      >
-        <h4>{profile.name}</h4>
 
-      </Link>
+        <h4>{profile.name}</h4>
       <Divider/>
       <Box m={1} >
-      <Button size="small" variant="contained" color="secondary" component={Link} to={{
+      <Button className={classes.buttons} size="small" variant="contained" color="secondary" component={Link} to={{
           pathname: '/profile',
           state: {profile}
         }}>Details</Button>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <Button size="small" variant="contained" color="secondary" startIcon={<PersonAddIcon />} onClick={() => handleAddFriend(profile._id)}> {profile.name}</Button> 
+      <Button className={classes.buttons} size="small" variant="contained" color="secondary" startIcon={<PersonAddIcon />} onClick={() => handleAddFriend(profile._id)}> {profile.name}</Button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <Button size="small" variant="contained" color="secondary" startIcon={<RemoveCircleIcon />}onClick={() => handleRemoveFriend(profile._id)}> {profile.name}</Button> 
+      <Button className={classes.buttons} size="small" variant="contained" color="secondary" startIcon={<RemoveCircleIcon />}onClick={() => handleRemoveFriend(profile._id)}> {profile.name}</Button> 
       }   
       </Box>
       </Box>
