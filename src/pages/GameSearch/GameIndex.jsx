@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as mediaAPI from '../../services/mediaService'
-// import mediaCard from '../../components/GameCard/GameCard'
+import GameCard from '../../components/GameCard/GameCard'
 
 class GameSearch extends Component {
   state = {
@@ -9,16 +9,15 @@ class GameSearch extends Component {
 
   async componentDidMount() {
     const { params } = this.props.match
-    const searchResults = await mediaAPI.search('games', params.query)
-    this.setState({ searchResults: searchResults.results })
-    console.log(searchResults.results)
+    const searchResults = await mediaAPI.search("game", params.query)
+    this.setState({ searchResults: searchResults })
   }
 
   async componentDidUpdate(prevProps) {
     const { params } = this.props.match
     if (params.query !== prevProps.match.params.query){
-        const searchResults = await mediaAPI.search('games?', params.query)
-        this.setState({ searchResults: searchResults.results })
+        const searchResults = await mediaAPI.search("game", params.query)
+        this.setState({ searchResults: searchResults })
       }
   }
 
@@ -26,15 +25,13 @@ class GameSearch extends Component {
     return (
       <>
         <h1>Game Results</h1>
-        {/* {this.state.searchResults.map(game =>
+        {this.state?.searchResults?.map(game =>
           <GameCard
-          movie={game}
+          game={game}
           key={game.id}
           userProfile={this.props.userProfile}
-          handleAddMedia={this.props.handleAddMedia}
-          handleRemoveMedia={this.props.handleRemoveMedia}
         />
-        )} */}
+        )} 
       </>  
     );
   }
