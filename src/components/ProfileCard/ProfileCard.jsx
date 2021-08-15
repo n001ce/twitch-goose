@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {Avatar, Card, CardActionArea, Box, List, CssBaseline, Typography, Divider, IconButton, MenuIcon, Button } from '@material-ui/core';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
 const useStyles = makeStyles((theme) => ({
   cardContainer:{
@@ -34,15 +36,15 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
       </Link>
       <Divider/>
       <Box m={1} >
-      <Button variant="contained" color="secondary" component={Link} to={{
+      <Button size="small" variant="contained" color="secondary" component={Link} to={{
           pathname: '/profile',
           state: {profile}
         }}>Details</Button>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <Button variant="contained" color="secondary" onClick={() => handleAddFriend(profile._id)}>Befriend {profile.name}</Button> 
+      <Button size="small" variant="contained" color="secondary" startIcon={<PersonAddIcon />} onClick={() => handleAddFriend(profile._id)}> {profile.name}</Button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <Button variant="contained" color="secondary" onClick={() => handleRemoveFriend(profile._id)}>Defriend {profile.name}</Button> 
+      <Button size="small" variant="contained" color="secondary" startIcon={<RemoveCircleIcon />}onClick={() => handleRemoveFriend(profile._id)}> {profile.name}</Button> 
       }   
       </Box>
       </Box>
