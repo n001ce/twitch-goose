@@ -7,9 +7,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import EditIcon from '@material-ui/icons/Edit';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 
 
 const drawerWidth = 240;
@@ -127,12 +127,14 @@ const MyProfileBar = ({ userProfile }) => {
         <h3 className={classes.listText} >{userProfile.name}</h3>
           </div>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary='Drafts'/>
+              <ListItem button key={1}>
+                <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
+                <ListItemText primary='Authenticate'/>
               </ListItem>
-            ))}
+              <ListItem button key={2}>
+                <ListItemIcon><EditIcon/></ListItemIcon>
+                <ListItemText primary='Edit'/>
+              </ListItem>
           </List>
           <Divider />
           <List>
