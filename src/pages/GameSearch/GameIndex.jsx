@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as mediaAPI from '../../services/gameService'
+import * as mediaAPI from '../../services/mediaService'
 import GameCard from '../../components/GameCard/GameCard'
 
 class GameSearch extends Component {

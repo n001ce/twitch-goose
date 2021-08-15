@@ -8,7 +8,7 @@ import cors from 'cors'
 
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
-import { router as gamesRouter } from './routes/games.js'
+import { router as mediaRouter } from './routes/media.js'
 import { router as reviewsRouter } from './routes/reviews.js'
 
 
