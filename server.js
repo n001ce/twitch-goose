@@ -24,7 +24,7 @@ app.use(express.json())
 
 app.use('/api/profiles', profilesRouter);
 app.use('/api/auth', authRouter)
-app.use('/media', mediaRouter)
+app.use('/api/media', mediaRouter)
 app.use('/reviews', reviewsRouter)
 
 
