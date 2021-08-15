@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { getAllProfiles } from '../../services/profileService'
+import Box from '@material-ui/core/Box';
 import ProfileCard from '../../components/ProfileCard/ProfileCard'
+import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
+
 
 class ProfileList extends Component {
   state = {
@@ -15,6 +18,8 @@ class ProfileList extends Component {
   render() { 
     return (
       <>
+      <MyProfileBar userProfile={this.props.userProfile} style={{display: 'flex'}}/>
+      <Box ml={35}>
         <h1>Profile List</h1>
         {this.state.profiles.map(profile => 
           <ProfileCard
@@ -25,6 +30,8 @@ class ProfileList extends Component {
             handleRemoveFriend={this.props.handleRemoveFriend}
           />
         )}
+
+      </Box>
       </>
     );
   }
