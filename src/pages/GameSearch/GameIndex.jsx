@@ -9,14 +9,14 @@ class GameSearch extends Component {
 
   async componentDidMount() {
     const { params } = this.props.match
-    const searchResults = await mediaAPI.search("game", params.query)
+    const searchResults = await mediaAPI.searchGames("game", params.query)
     this.setState({ searchResults: searchResults })
   }
 
   async componentDidUpdate(prevProps) {
     const { params } = this.props.match
     if (params.query !== prevProps.match.params.query){
-        const searchResults = await mediaAPI.search("game", params.query)
+        const searchResults = await mediaAPI.searchGames("game", params.query)
         this.setState({ searchResults: searchResults })
       }
   }

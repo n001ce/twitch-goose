@@ -1,8 +1,8 @@
 import * as tokenService from "./tokenService"
 const BASE_URL = "/api/media/"
 
-export function search(type, query) {
-  return fetch(`${BASE_URL}search/${type}/${query}`, {
+export function searchGames(query) {
+  return fetch(`${BASE_URL}search/games/${query}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -10,6 +10,14 @@ export function search(type, query) {
   .then(res => res.json())
 }
 
+export function searchStreams(query) {
+  return fetch(`${BASE_URL}search/streams/${query}`, {
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
 
 export function addMedia(media) {
   return fetch(
