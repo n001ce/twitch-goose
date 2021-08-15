@@ -1,5 +1,5 @@
 import * as tokenService from "./tokenService"
-const BASE_URL = "/api/media/"
+const BASE_URL = "/api/games/"
 
 export function search(type, query) {
   return fetch(`${BASE_URL}search/${type}/${query}`, {
