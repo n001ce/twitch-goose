@@ -34,6 +34,8 @@ class GameSearch extends Component {
           game={game}
           key={game.id}
           userProfile={this.props.userProfile}
+          handleAddMedia={this.props.handleAddMedia}
+          handleRemoveMedia={this.props.handleRemoveMedia}
         />
         )} 
       </>  

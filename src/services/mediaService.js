@@ -52,3 +52,11 @@ export function removeMedia(api_id) {
   .then((res) => res.json())
 }
 
+export function searchOneGame(id) {
+  return fetch(`${BASE_URL}searchOneGame/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
