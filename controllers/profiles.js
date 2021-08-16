@@ -1,5 +1,5 @@
 import { Profile } from "../models/profile.js"
-import { Game } from '../models/game.js'
+import { Media } from '../models/media.js'
 import { Streamer } from '../models/streamer.js'
 
 export {
@@ -27,8 +27,7 @@ function friend(req, res) {
 
 function unfriend(req, res) {
   Profile.findById(req.user.profile)
-  .populate('games')
-  .populate('streamers')
+  .populate('media')
   .populate('friends')
   .then(profile => {
     profile.friends.remove({ _id: req.params.id })
@@ -49,8 +48,7 @@ function index(req, res) {
 
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
-  .populate('games')
-  .populate('streamers')
+  .populate('media')
   .populate('friends')
   .then(profile => {
     res.json(profile)

@@ -3,19 +3,15 @@ import {Box, Grid, Typography, Divider } from '@material-ui/core';
 import GameCard from '../../components/GameCard/GameCard';
 
 
-const UserLanding = ({userProfile}) => {
+const UserLanding = ({userProfile, location}) => {
+
   return (
     <>
         <MyProfileBar userProfile={userProfile} />
         <Box ml={35} mr={5} my={3}>
         <Typography variant={'h4'} >Streamers I follow..</Typography>
         <Box style={{height:'280px'}}>
-        {userProfile?.games?.map(game=>
-          <GameCard
-          key={game._id}
-          game={game}
-          userProfile={userProfile}/>
-        )}
+        
         </Box>
         <Divider/>
         <Box my={2}>

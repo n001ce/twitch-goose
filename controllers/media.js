@@ -1,6 +1,7 @@
 import { Profile } from '../models/profile.js'
-import { Game } from '../models/game.js'
-import { Streamer } from '../models/streamer.js'
+import { Media } from '../models/media.js'
+
+
 import api from '../config/api.js'
 
 export {
@@ -8,16 +9,59 @@ export {
   topStreams,
   addMedia,
   searchGames,
-  getClip,
+  searchOneGame,
   searchStreams,
+  removeMedia
 }
 
-function addMedia(req, res) {
-  
+function addMedia (req, res) {
+  req.body.collectedBy = req.user.profile
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    Media.findOne({api_id: req.body.api_id})
+    .then(media =>  {
+      if (media) {
+        media.collectedBy.push(req.user.profile)
+        media.save()
+        .then(media => {
+          profile.media.push(media._id)
+          profile.save()
+          profile.populate('media').populate('friends').execPopulate()
+          .then((profile) => {
+            res.json(profile)
+          })
+        })
+      } else {
+        Media.create(req.body)
+        .then(media => {
+          profile.media.push(media._id)
+          profile.save()
+          profile.populate('media').populate('friends').execPopulate()
+          .then((profile) => {
+            res.json(profile)
+          })
+        })
+      }
+    })
+  })
 }
 
-function getClip(req,res){
-  
+function removeMedia(req, res) {
+  Media.findOne({ api_id: req.params.id })
+  .then(media => {
+    media.collectedBy.remove({ _id: req.user.profile })
+    media.save()
+    .then(() => {
+      Profile.findById(req.user.profile)
+      .then(profile => {
+        let mediaIdx = profile.media.findIndex(media => media.id === req.body.api_id)
+        profile.media.splice(mediaIdx, 1)
+        profile.save()
+        profile.populate('media').populate('friends').execPopulate()
+        .then(()=> res.json(profile))
+      })
+    })
+  })
 }
 
 function topGames(req, res){
@@ -36,6 +80,13 @@ function topStreams(req, res){
 
 function searchGames(req, res) {
   api.get(`https://api.twitch.tv/helix/search/categories?query=${req.params.query}`)
+  .then(response => {
+    res.json(response.data.data)
+  })
+}
+
+function searchOneGame(req, res) {
+  api.get(`https://api.twitch.tv/helix/games?id=${req.params.id}`)
   .then(response => {
     res.json(response.data.data)
   })

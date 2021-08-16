@@ -8,8 +8,10 @@ class GameDetails extends Component {
   }
 
   async componentDidMount() {
-    const searchResult = await mediaAPI.searchGames('game', this.props.match.params.id)
+    const {params} = this.props.match
+    const searchResult = await mediaAPI.searchOneGame(this.props.match.params.id)
     this.setState({searchResult})
+    console.log(searchResult)
   }
 
   render() {
@@ -17,6 +19,8 @@ class GameDetails extends Component {
     return (
       <>
         <h1>{searchResult.name}</h1>
+        <h4>Active Streams</h4>
+        
       </>
     );
   }
