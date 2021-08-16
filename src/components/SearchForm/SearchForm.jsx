@@ -7,14 +7,14 @@ class Search extends Component {
     invalidForm: true,
 		formData: {
       query: '',
-      type: "game",
+      type: "games",
 		},
   }
   
 	formRef = React.createRef();
 
 	handleChange = e => {
-		const formData = {...this.state.formData, [e.target.name]: e.target.value};
+		const formData = {...this.state.formData, [e.target.name]: e.target.value}
 		this.setState({
 		formData,
 		invalidForm: !this.formRef.current.checkValidity()
@@ -23,7 +23,11 @@ class Search extends Component {
 
   handleSubmit = e => {
 		e.preventDefault();
-    this.props.history.push(`/search/${this.state.formData.type}/${this.state.formData.query}`)
+    if(this.state.formData.type === 'games'){
+      this.props.history.push(`/search/games/${this.state.formData.query}`)
+    }else{
+      this.props.history.push(`/search/streams/${this.state.formData.query}`)
+    }
   };
   
   render() {

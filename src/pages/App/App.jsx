@@ -97,9 +97,9 @@ class App extends Component {
 					}
 				/>
 				<Route 
-					exact path='/search/game/:query'
+					exact path='/search/games/:query'
 					render={({ match })=> 
-						<GameIndex 
+						<GameIndex
 							match={match}
 							userProfile={userProfile}
 						/>
