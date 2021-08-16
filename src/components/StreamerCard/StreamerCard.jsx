@@ -8,6 +8,7 @@ const StreamerCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) 
     <>
      <div>
      <h1>{game?.name}</h1>
+     <img className='img-responsive' src={game?.box_art_url} alt={game?.name}/>
      </div>
 
     
