@@ -1,12 +1,18 @@
 import React from 'react' 
+//import { Link } from 'react-router-dom'
 // import moment from 'moment'
 
 const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
   return (
     <>
       <div>
-        <img src={game.box_art_url} alt={game.name}/>
+      <a href={`/GameDetails/${game.id}`}>
         <h1>{game.name}</h1>
+      </a>
+        <img className='img-responsive' src={game.box_art_url} alt={game.name}/>
+        <h1>{game.name}</h1>
+      
+      
       </div>
       
     

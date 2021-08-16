@@ -6,14 +6,16 @@ class GameDetails extends Component {
   state = {
     searchResult: {}
   }
-
+  
+  
   async componentDidMount() {
     const searchResult = await mediaAPI.searchGames('game', this.props.match.params.id)
-    this.setState({searchResult})
+    this.setState({ searchResult })
   }
-
+  
   render() {
     const { searchResult } = this.state 
+    console.log(searchResult)
     return (
       <>
         <h1>{searchResult.name}</h1>

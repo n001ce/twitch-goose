@@ -12,6 +12,7 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import GameIndex from '../GameSearch/GameIndex'
 import {createTheme, ThemeProvider} from '@material-ui/core'
 import { orange } from '@material-ui/core/colors'
+import GameDetails from '../GameDetails/GameDetails'
 
 
 const theme = createTheme({
@@ -114,7 +115,16 @@ class App extends Component {
 						/>
 					}
 				/>
-				
+					<Route
+					exact path='/games/:id'
+					render={({ match })=>
+						authService.getUser() ?
+						<GameDetails
+							match={match}
+							userProfile={userProfile}
+						/> : <Redirect to='/login'/>
+					}
+				/>
 			</ThemeProvider>
 			</>
 		)
