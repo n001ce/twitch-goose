@@ -20,10 +20,10 @@ class MediaForm extends Component {
     this.props.handleRemoveMedia(this.state.formData.api_id)
   }
 
-render() { 
+  render() { 
     return (
       <>
-        { this.props.userProfile?.media.some(media => media.api_id === this.state.formData.api_id) &&
+        { !this.props.userProfile?.media.some(media => media.api_id === this.state.formData.api_id) &&
           <button onClick={this.handleRemoveMedia}>REMOVE</button>
         }
         { !this.props.userProfile?.media.some(media => media.api_id === this.state.formData.api_id) &&

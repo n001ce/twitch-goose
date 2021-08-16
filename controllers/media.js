@@ -91,6 +91,12 @@ function searchOneGame(req, res) {
     res.json(response.data.data)
   })
 }
+function searchOneStream(req, res) {
+  api.get(`https://api.twitch.tv/helix/games?id=${req.params.id}`)
+  .then(response => {
+    res.json(response.data.data)
+  })
+}
 
 function searchStreams(req, res){
     api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}`)
