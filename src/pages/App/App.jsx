@@ -66,7 +66,8 @@ class App extends Component {
 			<>
 			<ThemeProvider theme={theme}>
 				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
-				<Route exact path='/'>
+				<Route exact path='/'
+					>
           			<Landing user={user} />
         		</Route>
 				<Route exact path='/signup'>
