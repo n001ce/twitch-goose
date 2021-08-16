@@ -69,9 +69,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchBar({ user, handleLogout, history, state, handleChange }) {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-return(
+
+    return(
     <div className={classes.search}>
             <InputBase
               placeholder="Search…"

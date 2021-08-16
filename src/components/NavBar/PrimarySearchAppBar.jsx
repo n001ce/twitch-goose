@@ -1,5 +1,5 @@
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import {  makeStyles } from '@material-ui/core/styles';
 import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, CssBaseline, Button, Switch, FormControlLabel,Box } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function PrimarySearchAppBar({ user, handleLogout, history }) {
+export default function PrimarySearchAppBar({ user, handleLogout, history, handleTheme }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -99,7 +99,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
         control={
           <Switch
             // checked={state.checkedB}
-            // onChange={handleChange}
+            onChange={handleTheme}
             name="checkedB"
             color="secondary"
           />
@@ -155,14 +155,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
     <CssBaseline />
       <AppBar position="fixed" className={classes.appBar} elevation={1}>
         <Toolbar>
-        <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+        
           <Typography className={classes.titleLink} variant="h6" noWrap component={Link} to='/'>
           Twitch Goose
           </Typography>
