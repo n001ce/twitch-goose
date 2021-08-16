@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import TopStreamsIndex from '../TopStreamersBar/TopStreamsIndex'
 
 
 const drawerWidth = 240;
@@ -76,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const TopStreamersBar = () =>{
+
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
 
@@ -90,6 +92,7 @@ const TopStreamersBar = () =>{
     return (
         <>
         <div className={classes.root}>
+      <TopStreamsIndex/>
       <CssBaseline />
       <Drawer
         variant="permanent"

@@ -10,6 +10,16 @@ export function searchGames(query) {
   .then(res => res.json())
 }
 
+export function topGames() {
+  return fetch(`${BASE_URL}topGames`)
+  .then(res => res.json())
+}
+
+export function topStreams() {
+  return fetch(`${BASE_URL}topStreams`)
+  .then(res => res.json())
+}
+
 export function searchStreams(query) {
   return fetch(`${BASE_URL}search/streams/${query}`, {
     headers: {
