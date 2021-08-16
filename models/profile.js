@@ -17,8 +17,7 @@ const profileSchema = new mongoose.Schema(
       default: 'Write something here..'
     },
     friends: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
-    games: [{type: mongoose.Schema.Types.ObjectId, ref: "Game"}],
-    streamers: [{type: mongoose.Schema.Types.ObjectId, ref: "Streamer"}],
+    media: [{type: mongoose.Schema.Types.ObjectId, ref: "Media"}],
     reviews:[{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
   },
   {

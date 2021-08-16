@@ -1,12 +1,12 @@
 import React from 'react' 
-//import { Link } from 'react-router-dom'
+import MediaForm from '../../components/MediaForm/MediaForm'
 // import moment from 'moment'
 
 const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
   return (
     <>
       <div>
-      <a href={`/GameDetails/${game.id}`}>
+      <a href={`/games/${game.id}`}>
         <h1>{game.name}</h1>
       </a>
         <img className='img-responsive' src={game.box_art_url} alt={game.name}/>
@@ -14,7 +14,13 @@ const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
       
       
       </div>
-      
+      <MediaForm
+        media={game}
+        userProfile={userProfile}
+        type="game"
+        handleAddMedia={handleAddMedia}
+        handleRemoveMedia={handleRemoveMedia}
+      />
     
     </>
   );

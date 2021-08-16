@@ -1,16 +1,13 @@
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, CssBaseline} from '@material-ui/core';
+import {  makeStyles } from '@material-ui/core/styles';
+import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, CssBaseline, Button, Switch, FormControlLabel,Box } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
 
-
 import { Link } from 'react-router-dom'
 import SearchForm from '../SearchForm/SearchForm'
-
-const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -52,9 +49,12 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
+  menu:{
+    padding:theme.spacing(5),
+  }
 }));
 
-export default function PrimarySearchAppBar({ user, handleLogout, history }) {
+export default function PrimarySearchAppBar({ user, handleLogout, history, handleTheme }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -83,15 +83,31 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      getContentAnchorEl={null}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       id={menuId}
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      className={classes.menu}
     >
+      <Box m={2}>
       <MenuItem component={Link} to=''onClick={handleLogout}>Logout</MenuItem>
       <MenuItem component={Link} to='/'>Recent Activity</MenuItem>
+      <FormControlLabel
+        control={
+          <Switch
+            // checked={state.checkedB}
+            onChange={handleTheme}
+            name="checkedB"
+            color="secondary"
+          />
+        }
+        label="Dark Mode"
+        labelPlacement="start"
+      />
+      </Box>
     </Menu>
   );
 
@@ -99,7 +115,8 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      getContentAnchorEl={null}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -138,14 +155,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
     <CssBaseline />
       <AppBar position="fixed" className={classes.appBar} elevation={1}>
         <Toolbar>
-        <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+        
           <Typography className={classes.titleLink} variant="h6" noWrap component={Link} to='/'>
           Twitch Goose
           </Typography>
@@ -159,8 +169,8 @@ export default function PrimarySearchAppBar({ user, handleLogout, history }) {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <Link to="/games" className={classes.navLink}>Games</Link>
-            <Link to="/users" className={classes.navLink}>Users</Link>
+            <Button size="medium" color="secondary" component={Link} to="/games">Games</Button>
+            <Button size="medium" color="secondary" component={Link} to="/users">Users</Button>
             <IconButton
               edge="end"
               aria-label="account of current user"

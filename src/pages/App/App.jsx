@@ -7,6 +7,7 @@ import Landing from '../Landing/Landing'
 import UserLanding from '../Landing/UserLanding'
 import * as authService from '../../services/authService'
 import * as profileAPI from '../../services/profileService'
+import * as mediaAPI from '../../services/mediaService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import GameIndex from '../GameSearch/GameIndex'
@@ -15,7 +16,7 @@ import { orange } from '@material-ui/core/colors'
 import GameDetails from '../GameDetails/GameDetails'
 
 
-const theme = createTheme({
+const light = createTheme({
 	palette:{
 		primary:{
 			main:'#fafafa'
@@ -29,10 +30,26 @@ const theme = createTheme({
 	  }
 })
 
+const dark = createTheme({
+	palette:{
+		type:"dark",
+		primary:{
+			main:'#303030'
+		},
+		secondary: orange,
+	},
+	zIndex: {
+		appBar: 1251,
+		modal: 1250,
+		drawer: 1200,
+	  }
+})
+
 class App extends Component {
 	state = {
 		user: authService.getUser(),
-		userProfile: null
+		userProfile: null,
+		darkTheme:false,
 	}
 
 	handleLogout = () => {
@@ -45,6 +62,16 @@ class App extends Component {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
 	}
 
+	handleAddMedia = async media => {
+		const updatedProfile = await mediaAPI.addMedia(media)
+		this.setState({userProfile: updatedProfile})
+	  }
+	
+	  handleRemoveMedia = async api_id => {
+		const updatedProfile = await mediaAPI.removeMedia(api_id)
+		this.setState({userProfile: updatedProfile})
+	  }
+
 	handleAddFriend = async friendId => {
 		const updatedProfile = await profileAPI.friend(friendId)
 		this.setState({ userProfile: updatedProfile })
@@ -55,19 +82,28 @@ class App extends Component {
 		this.setState({ userProfile: updatedProfile })
 	}
 
+	handleTheme = ()=>{
+		this.setState(({darkTheme})=>({darkTheme: !darkTheme}))
+	}
+
 	async componentDidMount() {
 		if (!this.state.userProfile){
 			const userProfile = await profileAPI.getUserProfile()
 			this.setState({ userProfile })
 		}
 	}
+	componentDidUpdate(){
+
+	}
 
 	render() {
-		const { user, userProfile } = this.state
+		const { user, userProfile, darkTheme } = this.state
+		let theme = (darkTheme? dark:light)
+
 		return (
 			<>
 			<ThemeProvider theme={theme}>
-				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
+				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} handleTheme={this.handleTheme}/>
 				<Route exact path='/'
 					render={()=> 
 						authService.getUser() ? 
@@ -112,10 +148,12 @@ class App extends Component {
 						<GameIndex
 							match={match}
 							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/>
 					}
 				/>
-					<Route
+				<Route
 					exact path='/games/:id'
 					render={({ match })=>
 						authService.getUser() ?
@@ -125,6 +163,7 @@ class App extends Component {
 						/> : <Redirect to='/login'/>
 					}
 				/>
+				
 			</ThemeProvider>
 			</>
 		)

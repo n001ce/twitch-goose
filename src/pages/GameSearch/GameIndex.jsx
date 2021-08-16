@@ -10,7 +10,7 @@ class GameSearch extends Component {
     searchResults: []
   }
 
-  //const UserLanding = ({userProfile}) => { 
+  
     
   
 
@@ -39,18 +39,20 @@ class GameSearch extends Component {
       <Typography variant={'h4'} >Game Results</Typography>
       <Box my={3}>
         <Grid container spacing={3}>
-        {this.state.searchResults.map(game => 
         <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
+          {this.state.searchResults.map(game => 
           <GameCard
-            game={game}
-            key={game._id}
-            
+          game={game}
+          key={game.id}
+          userProfile={this.props.userProfile}
+          handleAddMedia={this.props.handleAddMedia}
+          handleRemoveMedia={this.props.handleRemoveMedia}
           />
+        )} 
         </Grid>
-        )}
         </Grid>
-      </Box>
-      </Box>
+        </Box>
+        </Box>
       </>  
     );
   }

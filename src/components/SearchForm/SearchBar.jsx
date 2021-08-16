@@ -7,9 +7,9 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.black, 0.05),
+        backgroundColor: alpha(theme.palette.primary.dark, 0.10),
         '&:hover': {
-          backgroundColor: alpha(theme.palette.common.black, 0.10),
+          backgroundColor: alpha(theme.palette.primary.dark, 0.20),
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,
@@ -69,9 +69,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchBar({ user, handleLogout, history, state, handleChange }) {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-return(
+
+    return(
     <div className={classes.search}>
             <InputBase
               placeholder="Search…"
