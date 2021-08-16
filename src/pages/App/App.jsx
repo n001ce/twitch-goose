@@ -14,7 +14,7 @@ import {createTheme, ThemeProvider} from '@material-ui/core'
 import { orange } from '@material-ui/core/colors'
 
 
-const theme = createTheme({
+const light = createTheme({
 	palette:{
 		primary:{
 			main:'#fafafa'
@@ -28,10 +28,26 @@ const theme = createTheme({
 	  }
 })
 
+const dark = createTheme({
+	palette:{
+		type:"dark",
+		primary:{
+			main:'#303030'
+		},
+		secondary: orange,
+	},
+	zIndex: {
+		appBar: 1251,
+		modal: 1250,
+		drawer: 1200,
+	  }
+})
+
 class App extends Component {
 	state = {
 		user: authService.getUser(),
-		userProfile: null
+		userProfile: null,
+		darkTheme:false,
 	}
 
 	handleLogout = () => {
@@ -54,19 +70,28 @@ class App extends Component {
 		this.setState({ userProfile: updatedProfile })
 	}
 
+	handleTheme = ()=>{
+		this.setState(({darkTheme})=>({darkTheme: !darkTheme}))
+	}
+
 	async componentDidMount() {
 		if (!this.state.userProfile){
 			const userProfile = await profileAPI.getUserProfile()
 			this.setState({ userProfile })
 		}
 	}
+	componentDidUpdate(){
+
+	}
 
 	render() {
-		const { user, userProfile } = this.state
+		const { user, userProfile, darkTheme } = this.state
+		let theme = (darkTheme? dark:light)
+
 		return (
 			<>
 			<ThemeProvider theme={theme}>
-				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
+				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} handleTheme={this.handleTheme}/>
 				<Route exact path='/'
 					render={()=> 
 						authService.getUser() ? 

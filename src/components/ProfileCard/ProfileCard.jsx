@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Avatar, Card, CardActionArea, Box, List, CssBaseline, Typography, Divider, IconButton, MenuIcon, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import {Avatar, Card, Box, Typography, Divider, Button } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Avatar, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, MenuIcon } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import {Avatar, Drawer, List, CssBaseline, Typography, Divider, IconButton } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
