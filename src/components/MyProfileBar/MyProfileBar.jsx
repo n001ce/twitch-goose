@@ -123,8 +123,8 @@ const MyProfileBar = ({ userProfile }) => {
         </div>
         <div className={classes.drawerContainer}>
           <div className={classes.lists}>
-        <Avatar className={classes.avatar} alt="User Avatar" src={userProfile.avatar} variant="rounded"/>
-        <h3 className={classes.listText} >{userProfile.name}</h3>
+        <Avatar className={classes.avatar} alt="User Avatar" src={userProfile?.avatar} variant="rounded"/>
+        <h3 className={classes.listText} >{userProfile?.name}</h3>
           </div>
           <List>
               <ListItem button key={1}>
@@ -138,7 +138,7 @@ const MyProfileBar = ({ userProfile }) => {
           </List>
           <Divider />
           <List>
-            {userProfile.friends.map((pl) => (
+            {userProfile?.friends.map((pl) => (
               <ListItem button key={pl._id}>
                 <ListItemIcon> <AccountCircle/> </ListItemIcon>
                 <ListItemText primary={pl.name} />

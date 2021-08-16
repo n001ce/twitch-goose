@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Signup from '../Signup/Signup'
 import Login from '../Login/Login'
 import Landing from '../Landing/Landing'
+import UserLanding from '../Landing/UserLanding'
 import * as authService from '../../services/authService'
 import * as profileAPI from '../../services/profileService'
 import ProfileList from '../ProfileList/ProfileList'
@@ -67,8 +68,15 @@ class App extends Component {
 			<ThemeProvider theme={theme}>
 				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
 				<Route exact path='/'
-					>
+					render={()=> 
+						authService.getUser() ? 
+						<Redirect to='/landing'
+							userProfile={userProfile}
+						/> :
           			<Landing user={user} />
+        		}/>
+				<Route exact path='/landing'>
+          			<UserLanding userProfile={userProfile}/>
         		</Route>
 				<Route exact path='/signup'>
           			<Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
