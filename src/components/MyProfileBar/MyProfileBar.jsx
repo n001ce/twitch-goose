@@ -138,7 +138,7 @@ const MyProfileBar = ({ userProfile }) => {
           </List>
           <Divider />
           <List>
-            {userProfile?.friends.map((pl) => (
+            {userProfile?.friends?.map((pl) => (
               <ListItem button key={pl._id}>
                 <ListItemIcon> <AccountCircle/> </ListItemIcon>
                 <ListItemText primary={pl.name} />
