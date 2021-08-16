@@ -7,11 +7,13 @@ import Landing from '../Landing/Landing'
 import UserLanding from '../Landing/UserLanding'
 import * as authService from '../../services/authService'
 import * as profileAPI from '../../services/profileService'
+import * as mediaAPI from '../../services/mediaService'
 import ProfileList from '../ProfileList/ProfileList'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import GameIndex from '../GameSearch/GameIndex'
 import {createTheme, ThemeProvider} from '@material-ui/core'
 import { orange } from '@material-ui/core/colors'
+import GameDetails from '../GameDetails/GameDetails'
 
 
 const theme = createTheme({
@@ -43,6 +45,16 @@ class App extends Component {
 	handleSignupOrLogin = async () => {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
 	}
+
+	handleAddMedia = async media => {
+		const updatedProfile = await mediaAPI.addMedia(media)
+		this.setState({userProfile: updatedProfile})
+	  }
+	
+	  handleRemoveMedia = async api_id => {
+		const updatedProfile = await mediaAPI.removeMedia(api_id)
+		this.setState({userProfile: updatedProfile})
+	  }
 
 	handleAddFriend = async friendId => {
 		const updatedProfile = await profileAPI.friend(friendId)
@@ -111,7 +123,19 @@ class App extends Component {
 						<GameIndex
 							match={match}
 							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/>
+					}
+				/>
+				<Route
+					exact path='/games/:id'
+					render={({ match })=>
+						authService.getUser() ?
+						<GameDetails
+							match={match}
+							userProfile={userProfile}
+						/> : <Redirect to='/login'/>
 					}
 				/>
 				
