@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Avatar, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, MenuIcon } from '@material-ui/core';
+import {Avatar, Drawer, Box, Toolbar, List, CssBaseline, Typography, Divider, IconButton, MenuIcon } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const MyProfileBar = ({ userProfile }) => {
+const TopStreamersBar = () =>{
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
 
@@ -88,8 +88,8 @@ const MyProfileBar = ({ userProfile }) => {
     };
 
     return (
-      <>
-<div className={classes.root}>
+        <>
+        <div className={classes.root}>
       <CssBaseline />
       <Drawer
         variant="permanent"
@@ -121,35 +121,25 @@ const MyProfileBar = ({ userProfile }) => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <div className={classes.drawerContainer}>
-          <div className={classes.lists}>
-        <Avatar className={classes.avatar} alt="User Avatar" src={userProfile?.avatar} variant="rounded"/>
-        <h3 className={classes.listText} >{userProfile?.name}</h3>
-          </div>
-          <List>
+        <Box className={classes.drawerContainer} m={2}>
+            <Typography variant={'h6'} className={clsx({
+              [classes.hide]: !open,
+            })}>Top Streamers</Typography>
+        <List>
               <ListItem button key={1}>
                 <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
-                <ListItemText primary='Authenticate'/>
+                <ListItemText primary='Streamer 1'/>
               </ListItem>
               <ListItem button key={2}>
-                <ListItemIcon><EditIcon/></ListItemIcon>
-                <ListItemText primary='Edit'/>
+                <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
+                <ListItemText primary='Streamer 2'/>
               </ListItem>
           </List>
-          <Divider />
-          <List>
-            {userProfile?.friends?.map((pl) => (
-              <ListItem button key={pl._id}>
-                <ListItemIcon> <AccountCircle/> </ListItemIcon>
-                <ListItemText primary={pl.name} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </Drawer>        
+        </Box>
+        </Drawer> 
         </div>
         </>
-    );
-  }
-   
-  export default MyProfileBar;
+    )
+}
+
+export default TopStreamersBar
