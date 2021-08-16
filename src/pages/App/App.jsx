@@ -28,6 +28,21 @@ const theme = createTheme({
 	  }
 })
 
+const darkTheme = createTheme({
+	palette:{
+		type:"dark",
+		primary:{
+			main:'#303030'
+		},
+		secondary: orange,
+	},
+	zIndex: {
+		appBar: 1251,
+		modal: 1250,
+		drawer: 1200,
+	  }
+})
+
 class App extends Component {
 	state = {
 		user: authService.getUser(),
