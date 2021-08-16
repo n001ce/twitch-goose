@@ -6,12 +6,10 @@ const Landing = ({user}) => {
   return (
     < >
       <TopStreamersBar />
-      
       <Box ml={35} mr={5} my={3}>
+      <Typography variant={'h4'} >Top Games</Typography>
       <TopGames />
-      <h1>
-        hello, {user ? user.name : "friend"}
-      </h1>
+      
       </Box>
 
     </>

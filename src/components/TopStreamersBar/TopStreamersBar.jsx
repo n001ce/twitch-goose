@@ -92,7 +92,6 @@ const TopStreamersBar = () =>{
     return (
         <>
         <div className={classes.root}>
-      <TopStreamsIndex/>
       <CssBaseline />
       <Drawer
         variant="permanent"
@@ -128,16 +127,7 @@ const TopStreamersBar = () =>{
             <Typography variant={'h6'} className={clsx({
               [classes.hide]: !open,
             })}>Top Streamers</Typography>
-        <List>
-              <ListItem button key={1}>
-                <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
-                <ListItemText primary='Streamer 1'/>
-              </ListItem>
-              <ListItem button key={2}>
-                <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
-                <ListItemText primary='Streamer 2'/>
-              </ListItem>
-          </List>
+          <TopStreamsIndex/>
         </Box>
         </Drawer> 
         </div>
