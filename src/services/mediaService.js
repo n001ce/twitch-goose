@@ -39,25 +39,33 @@ export function addMedia(media) {
       body: JSON.stringify(media)
     },
     { mode: "cors" })
-  .then((res) => res.json())
-}
-
-export function removeMedia(api_id) {
-  return fetch(
-    `${BASE_URL}removeMedia/${api_id}`,
-    {
-      method: 'DELETE',
-      headers: {'Authorization': 'Bearer ' + tokenService.getToken()},
-    },
-    { mode: "cors" })
-  .then((res) => res.json())
-}
-
-export function searchOneGame(id) {
-  return fetch(`${BASE_URL}searchOneGame/${id}`, {
-    headers: {
-      'Authorization': `Bearer ${tokenService.getToken()}`
-    },
-  }, {mode: "cors"})
-  .then(res => res.json())
-}
+    .then((res) => res.json())
+  }
+  
+  export function removeMedia(api_id) {
+    return fetch(
+      `${BASE_URL}removeMedia/${api_id}`,
+      {
+        method: 'DELETE',
+        headers: {'Authorization': 'Bearer ' + tokenService.getToken()},
+      },
+      { mode: "cors" })
+      .then((res) => res.json())
+    }
+    
+    export function searchOneGame(id) {
+      return fetch(`${BASE_URL}searchOneGame/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+      }, {mode: "cors"})
+      .then(res => res.json())
+    }
+    export function searchOneStream(id) {
+      return fetch(`${BASE_URL}searchOneStream/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+      }, {mode: "cors"})
+      .then(res => res.json())
+    }

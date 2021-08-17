@@ -33,7 +33,7 @@ class StreamSearch extends Component {
          <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
           <StreamerCard
           stream={stream}
-          key={stream.id}
+          key={stream.user_id}
           userProfile={this.props.userProfile}
         />
          </Grid>

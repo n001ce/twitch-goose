@@ -15,6 +15,7 @@ import {createTheme, ThemeProvider} from '@material-ui/core'
 import { orange } from '@material-ui/core/colors'
 import GameDetails from '../GameDetails/GameDetails'
 import StreamSearch from '../StreamSearch/StreamSearch'
+import StreamDetails from '../StreamDetails/StreamDetails'
 
 
 const light = createTheme({
@@ -171,6 +172,16 @@ class App extends Component {
 					render={({ match })=>
 						authService.getUser() ?
 						<GameDetails
+							match={match}
+							userProfile={userProfile}
+						/> : <Redirect to='/login'/>
+					}
+				/>
+				<Route
+					exact path='/streams/:id'
+					render={({ match })=>
+						authService.getUser() ?
+						<StreamDetails
 							match={match}
 							userProfile={userProfile}
 						/> : <Redirect to='/login'/>

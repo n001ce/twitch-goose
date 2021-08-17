@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class MediaForm extends Component {
   state = {
     formData: {
-      api_id: this.props.media.id,
+      api_id: this.props.type === 'stream' ? this.props.media.user_id : this.props.media.id,
       title: this.props.type === 'stream' ? this.props.media.user_name : this.props.media.name,
       img_url: this.props.type === 'stream' ? this.props.media.thumbnail_url : this.props.media.box_art_url,
       type: this.props.type,
