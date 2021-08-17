@@ -12,7 +12,7 @@ class StreamDetails extends Component {
   
   async componentDidMount() {
     
-    const searchResult = await mediaAPI.searchOneGame(this.props.match.params.id)
+    const searchResult = await mediaAPI.searchOneGame(this.props.match.params.api_id)
     this.setState({searchResult})
     
   }

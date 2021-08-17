@@ -17,7 +17,7 @@ const StreamerCard = ({ stream, userProfile, handleAddMedia, handleRemoveMedia})
   return (
     <>
       <div>
-      <a href={`/streams/${stream.user_id}`} className={classes.title}>
+      <a href={`/streams/${stream.id}`} className={classes.title}>
       <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
       <Typography variant="h5" >{stream.display_name}</Typography>
       </a>

@@ -1,39 +1,29 @@
 import React, { Component } from 'react'
 import * as mediaAPI from '../../services/mediaService'
-import StreamerCard from '../../components/StreamerCard/StreamerCard';
-import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
-import {Box, Grid, Typography} from '@material-ui/core';
+
 
 class StreamDetails extends Component {
   state = {
     searchResult: {}
   }
-  
-  
+
   async componentDidMount() {
-    
     const searchResult = await mediaAPI.searchOneStream(this.props.match.params.id)
-    this.setState({searchResult})
-    
+    this.setState({searchResult : searchResult.data})
   }
-  
+
   render() {
-      const {searchResult} = this.state 
-      return (
-          <>
-      <Box my={3}>
-        <Grid container spacing={3}>
-        {this.state.searchResults.map(stream =>
-         <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
-          <StreamerCard
-          stream={stream}
-          key={stream.id}
-          userProfile={this.props.userProfile}
-        />
-         </Grid>
-        )} 
-        </Grid>
-      </Box>
+    const { searchResult } = this.state 
+    return (
+      <>
+        <h1>{searchResult.user_name}</h1>
+        <h3>{searchResult?.game_name}</h3>
+        <img src={searchResult.thumbnail_url} alt="backdrop" /><br></br>
+        <p>{searchResult.title}</p>
+        <h4>Viewers: {searchResult.viewer_count}</h4>
+        <h4>Started At: {searchResult.started_at}</h4>
+        <h4>Language:  {searchResult?.language}</h4>
+        <h3>Mature? : {searchResult.is_mature}</h3>
       </>
     );
   }
