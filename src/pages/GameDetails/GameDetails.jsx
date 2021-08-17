@@ -22,6 +22,9 @@ class GameDetails extends Component {
     const {searchResult, streamerResult} = this.state
     return (
       <>
+        <MyProfileBar userProfile={this.props.userProfile} />
+        <Box ml={35} mr={5} my={3}>
+
         <h1>{searchResult.name}</h1>
         <Box my={3}>
         <Grid container spacing={3}>
@@ -37,7 +40,8 @@ class GameDetails extends Component {
          </Grid>
         )} 
         </Grid>
-      </Box>
+        </Box>
+        </Box>
       </>  
     );
   }
