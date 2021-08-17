@@ -1,5 +1,5 @@
 import React from 'react' 
-import MediaForm from '../../components/MediaForm/MediaForm'
+//import MediaForm from '../../components/MediaForm/MediaForm'
 // import moment from 'moment'
 
 const StreamerCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
