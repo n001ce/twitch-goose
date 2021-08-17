@@ -11,7 +11,8 @@ export {
   searchGames,
   searchOneGame,
   searchStreams,
-  removeMedia
+  searchOneStream,
+  removeMedia,
 }
 
 function addMedia (req, res) {
@@ -91,10 +92,12 @@ function searchOneGame(req, res) {
     res.json(response.data.data)
   })
 }
+
 function searchOneStream(req, res) {
-  api.get(`https://api.twitch.tv/helix/games?id=${req.params.id}`)
-  .then(response => {
-    res.json(response.data.data)
+  api.get(`https://api.twitch.tv/helix/streams?user_id=${req.params.id}`)
+  .then(response =>{
+    console.log(response.data)
+    res.json(response.data)
   })
 }
 
@@ -105,6 +108,8 @@ function searchStreams(req, res){
       res.json(response.data)
     })
 }
+
+
 
 
 function getSchedule(req, res){

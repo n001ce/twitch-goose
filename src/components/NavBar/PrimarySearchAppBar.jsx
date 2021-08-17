@@ -1,5 +1,5 @@
 import React from 'react';
-import {  makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, CssBaseline, Button, Switch, FormControlLabel,Box } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -197,10 +197,9 @@ export default function PrimarySearchAppBar({ user, handleLogout, history, handl
         ):(
                     < >
           <div className={classes.grow} />
-          <Link to="/users" className={classes.navLink}>Users</Link>
-          <Link to="/games" className={classes.navLink}>Games</Link>
-          <Link to="/signup" className={classes.navLink}>Sign Up</Link>
-          <Link to="/login" className={classes.navLink}>Log In</Link>
+          <Button size="medium" color="secondary" component={Link} to="/users">Users</Button>
+          <Button size="medium" color="secondary" component={Link} to="/signup">Sign Up</Button>
+          <Button size="medium" color="secondary" component={Link} to="/login">Log In</Button>
                     </>
          )}
         </Toolbar>

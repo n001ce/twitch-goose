@@ -7,7 +7,7 @@ export {
 
 const mediaSchema = new Schema({
   api_id: Number,
-  title: {type: String, required: true},
+  title: String, 
   img_url: String,
   type: String,
   collectedBy: [{ type: Schema.Types.ObjectId, ref: "Profile" }],

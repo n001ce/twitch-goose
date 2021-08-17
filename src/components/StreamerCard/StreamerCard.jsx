@@ -1,19 +1,40 @@
 import React from 'react' 
-//import MediaForm from '../../components/MediaForm/MediaForm'
+import MediaForm from '../../components/MediaForm/MediaForm'
 // import moment from 'moment'
+import { makeStyles } from '@material-ui/core/styles';
+import {Typography } from '@material-ui/core';
 
-const StreamerCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
-  
+const useStyles = makeStyles((theme) => ({
+  title: {
+    textDecoration:'none',
+    color:theme.palette.secondary.dark,
+  },
+}));
+
+const StreamerCard = ({ stream, userProfile, handleAddMedia, handleRemoveMedia}) => {
+  const classes = useStyles();
+
   return (
     <>
-     <div>
-     <h1>{game?.name}</h1>
-     <img className='img-responsive' src={game?.box_art_url} alt={game?.name}/>
-     </div>
+      <div>
+      <a href={`/streams/${stream.id}`} className={classes.title}>
+      <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
+      <Typography variant="h5" >{stream.display_name}</Typography>
+      </a>
+      {userProfile ? 
+      <MediaForm
+        media={stream}
+        userProfile={userProfile}
+        type="stream"
+        handleAddMedia={handleAddMedia}
+        handleRemoveMedia={handleRemoveMedia}
+      /> : <div></div>
+      
+    }
+          </div>
 
-    
     </>
   );
 }
-
+ 
 export default StreamerCard;
