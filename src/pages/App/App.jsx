@@ -14,6 +14,7 @@ import GameIndex from '../GameSearch/GameIndex'
 import {createTheme, ThemeProvider} from '@material-ui/core'
 import { orange } from '@material-ui/core/colors'
 import GameDetails from '../GameDetails/GameDetails'
+import StreamSearch from '../StreamSearch/StreamSearch'
 
 
 const light = createTheme({
@@ -151,6 +152,18 @@ class App extends Component {
 							handleAddMedia={this.handleAddMedia}
 							handleRemoveMedia={this.handleRemoveMedia}
 						/>
+					}
+				/>
+				<Route 
+					exact path='/search/streams/:query'
+					render={({ match })=> 
+					authService.getUser() ?
+						<StreamSearch
+							match={match}
+							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
+						/> : <Redirect to='/login'/>
 					}
 				/>
 				<Route
