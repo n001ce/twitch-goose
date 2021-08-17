@@ -10,6 +10,15 @@ export function searchGames(query) {
   .then(res => res.json())
 }
 
+export function searchStreams(query) {
+  return fetch(`${BASE_URL}search/streams/${query}`, {
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
+
 export function topGames() {
   return fetch(`${BASE_URL}topGames`)
   .then(res => res.json())
@@ -20,14 +29,6 @@ export function topStreams() {
   .then(res => res.json())
 }
 
-export function searchStreams(query) {
-  return fetch(`${BASE_URL}search/streams/${query}`, {
-    headers: {
-      'Authorization': `Bearer ${tokenService.getToken()}`
-    },
-  }, {mode: "cors"})
-  .then(res => res.json())
-}
 
 export function addMedia(media) {
   return fetch(
