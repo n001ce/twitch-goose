@@ -1,6 +1,7 @@
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import {Box, Grid, Typography, Divider } from '@material-ui/core';
-import UserMediaCard from '../../components/UserMediaCard/UserMediaCard';
+import UserStreamCard from '../../components/UserMediaCard/UserStreamCard';
+import UserGameCard from '../../components/UserMediaCard/UserGameCard';
 
 
 const UserLanding = ({userProfile, location}) => {
@@ -13,7 +14,7 @@ const UserLanding = ({userProfile, location}) => {
         <Box my={3}>
         <Grid container spacing={3}>
         {userProfile?.media?.map(media=>
-          (media.type === 'stream')? <UserMediaCard
+          (media.type === 'stream')? <UserStreamCard
           key={media._id}
           media={media}
           userProfile={userProfile}/> : <Box style={{height:'280px'}}></Box>
@@ -25,10 +26,10 @@ const UserLanding = ({userProfile, location}) => {
         <Typography variant={'h4'} >My Games</Typography>
         <Box my={3}>
         <Grid container spacing={3}>
-        {userProfile?.media?.map(media=>
-          (media.type === 'game')? <UserMediaCard
-          key={media._id}
-          media={media}
+        {userProfile?.media?.map(game=>
+          (game.type === 'game')? <UserGameCard
+          key={game._id}
+          game={game}
           userProfile={userProfile}/> : <Box style={{height:'280px'}}></Box>
           )}
           </Grid>

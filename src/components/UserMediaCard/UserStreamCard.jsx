@@ -16,29 +16,26 @@ const useStyles = makeStyles((theme) => ({
   root:{
     margin:'5px',
     padding:'5px',
-    height:'350px',
+    height:'260px',
   },
   image:{
     width:'180px',
   }
 }));
 
-const UserMediaCard = ({ media, userProfile, handleAddMedia, handleRemoveMedia}) => {
+const UserStreamCard = ({ media, userProfile, handleAddMedia, handleRemoveMedia}) => {
   const newUrl = media.img_url?.replace('52x72','200x300')
   const classes = useStyles(); 
-  console.log(media)
 
   return (
     <>
       <div>
       <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
-        {/* {media.type === 'game'} */}
       <Card className={classes.root} >
       <a href={`/games/${media.id}`} className={classes.title}>
       <img className={classes.image} src={newUrl} alt={media.title}/>
       <Typography variant="h5" flex-wrap>{media.title}</Typography>
       </a>
-
       {/* {userProfile ? 
       <MediaForm
         media={media}
@@ -48,7 +45,8 @@ const UserMediaCard = ({ media, userProfile, handleAddMedia, handleRemoveMedia})
         handleRemoveMedia={handleRemoveMedia}
       /> : <div></div>
     } */}
-    </Card>
+    </Card> : 
+  
     </Box>
           </div>
 
@@ -56,4 +54,4 @@ const UserMediaCard = ({ media, userProfile, handleAddMedia, handleRemoveMedia})
   );
 }
  
-export default UserMediaCard;
+export default UserStreamCard;
