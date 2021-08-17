@@ -8,7 +8,20 @@ const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) => {
     <>
       <div>
         <img src={newUrl} alt={game.name}/>
+      <a href={`/games/${game.id}`}>
         <h1>{game.name}</h1>
+        <MediaForm
+          media={game}
+          userProfile={userProfile}
+          type="game"
+          handleAddMedia={handleAddMedia}
+          handleRemoveMedia={handleRemoveMedia}
+        />
+      </a>
+        <img className='img-responsive' src={game.box_art_url} alt={game.name}/>
+        
+      
+      
       </div>
       {userProfile ? 
       <MediaForm
