@@ -7,7 +7,7 @@ import {Box, Grid, Typography} from '@material-ui/core';
 class GameDetails extends Component {
   state = {
     searchResult: [],
-    streamerResult: {}
+    streamerResult: []
   }
   
   
@@ -19,11 +19,25 @@ class GameDetails extends Component {
   }
   
   render() { 
-    const {searchResult} = this.state
+    const {searchResult, streamerResult} = this.state
     return (
       <>
         <h1>{searchResult.name}</h1>
-        
+        <Box my={3}>
+        <Grid container spacing={3}>
+        {streamerResult.map(stream =>
+         <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
+          <StreamerCard
+          stream={stream}
+          key={stream.id}
+          userProfile={this.props.userProfile}
+          handleAddMedia={this.props.handleAddMedia}
+          handleRemoveMedia={this.props.handleRemoveMedia}
+        />
+         </Grid>
+        )} 
+        </Grid>
+      </Box>
       </>  
     );
   }
