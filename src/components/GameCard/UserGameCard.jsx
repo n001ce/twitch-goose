@@ -1,6 +1,5 @@
 import React from 'react' 
 import MediaForm from '../../components/MediaForm/MediaForm'
-// import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography } from '@material-ui/core';
 
@@ -11,10 +10,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) => {
-  const newUrl = game.box_art_url?.replace('{width}','200').replace('{height}','300')
-  const classes = useStyles();
+const UserGameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) => {
+  const newUrl = game.img_url?.replace('{width}','200').replace('{height}','300')
+  const classes = useStyles(); 
 console.log(game)
+
   return (
     <>
       <div>
@@ -40,4 +40,4 @@ console.log(game)
   );
 }
  
-export default GameCard;
+export default UserGameCard;
