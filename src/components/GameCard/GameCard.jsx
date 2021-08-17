@@ -6,7 +6,7 @@ const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
   return (
     <>
       <div>
-        <img src={game.box_art_url} alt={game.name}/>
+      <a href={`/games/${game.id}`}>
         <h1>{game.name}</h1>
         <MediaForm
           media={game}
@@ -15,6 +15,11 @@ const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia }) => {
           handleAddMedia={handleAddMedia}
           handleRemoveMedia={handleRemoveMedia}
         />
+      </a>
+        <img className='img-responsive' src={game.box_art_url} alt={game.name}/>
+        
+      
+      
       </div>
     
     </>
