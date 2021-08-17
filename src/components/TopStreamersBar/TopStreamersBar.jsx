@@ -1,15 +1,9 @@
 import React from 'react'
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Avatar, Drawer, Box, Toolbar, List, CssBaseline, Typography, Divider, IconButton, MenuIcon } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Drawer, Box, CssBaseline, Typography, IconButton } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import EditIcon from '@material-ui/icons/Edit';
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import TopStreamsIndex from '../TopStreamersBar/TopStreamsIndex'
 
 
