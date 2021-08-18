@@ -70,7 +70,7 @@ class App extends Component {
 		this.setState({userProfile: updatedProfile})
 	  }
 	
-	  handleRemoveMedia = async api_id => {
+	handleRemoveMedia = async api_id => {
 		const updatedProfile = await mediaAPI.removeMedia(api_id)
 		this.setState({userProfile: updatedProfile})
 	  }

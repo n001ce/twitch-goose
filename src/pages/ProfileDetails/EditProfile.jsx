@@ -87,21 +87,8 @@ const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia, handl
         <Avatar className={classes.avatar} alt="User Avatar" src={userProfile?.avatar} variant="rounded"/>
         <h3 className={classes.listText} >{userProfile?.name}</h3>
           </div>
-          {/* edit profile form */}
           <ProfileForm userProfile={userProfile} handleUpdateProfile={handleUpdateProfile}/>
-          {/* <List>
-              <ListItem button key={1}>
-                <ListItemIcon>Avatar </ListItemIcon>
-                <TextField id="outlined-basic" label="Avatar url" variant="outlined"
-                name="avatar"
-                value={userProfile.avatar}
-                onChange={handleChange} />
-              </ListItem>
-              <ListItem button key={2} component={Link} to='/'>
-                <ListItemIcon><DoneOutlineIcon style={{ color: green[500] }}/></ListItemIcon>
-                <ListItemText style={{ color: green[500] }} primary='Save Profile'/>
-              </ListItem>
-          </List> */}
+
           <Divider />
           <List>
             {userProfile?.friends?.map((pl) => (
