@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as mediaAPI from '../../services/mediaService'
 import StreamerCard from '../../components/StreamerCard/StreamerCard';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
-import {Box, Grid, Typography} from '@material-ui/core';
+import {Box, Grid, Divider, Typography} from '@material-ui/core';
 
 class GameDetails extends Component {
   state = {
@@ -14,18 +14,23 @@ class GameDetails extends Component {
   async componentDidMount() {
     const searchResult = await mediaAPI.searchOneGame(this.props.match.params.id)
     const streamerResult = await mediaAPI.searchStreams(searchResult[0].name)
-    this.setState({searchResult: searchResult[0], streamerResult : streamerResult.data})
-    
+    this.setState({searchResult: searchResult[0], streamerResult : streamerResult.data}) 
   }
   
   render() { 
     const {searchResult, streamerResult} = this.state
+    const newUrl = searchResult.box_art_url?.replace('{width}','200').replace('{height}','300')
+    
     return (
       <>
         <MyProfileBar userProfile={this.props.userProfile} />
         <Box ml={35} mr={5} my={3}>
-
+        <Box m={2}>
         <h1>{searchResult.name}</h1>
+        <img src={newUrl} alt={searchResult.name}/>
+        </Box>
+        <Divider/>
+        <h3>Streamers Playing</h3>
         <Box my={3}>
         <Grid container spacing={3}>
         {streamerResult.map(stream =>
