@@ -24,11 +24,12 @@ class GameDetails extends Component {
     return (
       <>
         <MyProfileBar userProfile={this.props.userProfile} />
-        <Box ml={35} mr={5} my={3}>
+        <Box ml={35} mr={5} my={3} >
         <Box m={2}>
         <h1>{searchResult.name}</h1>
         <img src={newUrl} alt={searchResult.name}/>
         </Box>
+      
         <Divider/>
         <h3>Streamers Playing</h3>
         <Box my={3}>
