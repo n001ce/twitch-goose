@@ -28,7 +28,7 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
     <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
     <Card className={classes.root} >
       <Box m={1} pt={2}>
-    <Avatar className={classes.avatar} alt="User Avatar" src={userProfile.avatar} variant="rounded"/>
+    <Avatar className={classes.avatar} alt="User Avatar" src={profile.avatar} variant="rounded"/>
 
         <h4>{profile.name}</h4>
       <Divider/>

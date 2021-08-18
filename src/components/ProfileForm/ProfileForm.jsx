@@ -20,7 +20,7 @@ class ProfileForm extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        // await profileAPI.update(this.state.formData)
+        await profileAPI.update(this.state.formData)
         this.props.handleUpdateProfile(this.state.formData)
       }
 
