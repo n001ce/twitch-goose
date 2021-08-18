@@ -55,7 +55,7 @@ function removeMedia(req, res) {
     .then(() => {
       Profile.findById(req.user.profile)
       .then(profile => {
-        let mediaIdx = profile.media.findIndex(media => media.id === req.body.api_id)
+        let mediaIdx = profile.media.indexOf(media._id)
         profile.media.splice(mediaIdx, 1)
         profile.save()
         profile.populate('media').populate('friends').execPopulate()
