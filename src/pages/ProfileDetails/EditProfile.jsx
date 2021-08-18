@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia }) => {
+const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia, handleUpdateProfile }) => {
 
   
   const classes = useStyles();
@@ -88,7 +88,7 @@ const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia }) => 
         <h3 className={classes.listText} >{userProfile?.name}</h3>
           </div>
           {/* edit profile form */}
-          <ProfileForm userProfile={userProfile}/>
+          <ProfileForm userProfile={userProfile} handleUpdateProfile={handleUpdateProfile}/>
           {/* <List>
               <ListItem button key={1}>
                 <ListItemIcon>Avatar </ListItemIcon>

@@ -6,7 +6,21 @@ export {
   userProfile,
   index,
   friend,
-  unfriend
+  unfriend,
+  update
+}
+
+function update(req, res) {
+  // Find the user's profile
+  console.log(req.body)
+  Profile.findByIdAndUpdate(req.params.id,req.body,{new: true})
+  .then(profile => {
+    profile.save()
+    profile.populate('media').populate('friends').execPopulate()
+    .then(()=> {
+      res.json(profile)
+    })
+  })
 }
 
 function friend(req, res) {
