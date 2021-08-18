@@ -35,8 +35,8 @@ class GameSearch extends Component {
       <Typography variant={'h4'} >Game Results</Typography>
       <Box my={3}>
         <Grid container spacing={3}>
-        <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
           {this.state.searchResults.map(game => 
+        <Grid item xs={12} s={6} md={4} lg={3} mx={'auto'} >
           <GameCard
           game={game}
           key={game.id}
@@ -44,11 +44,11 @@ class GameSearch extends Component {
           handleAddMedia={this.props.handleAddMedia}
           handleRemoveMedia={this.props.handleRemoveMedia}
           />
+        </Grid>
         )} 
         </Grid>
-        </Grid>
-        </Box>
-        </Box>
+      </Box>
+      </Box>
       </>  
     );
   }
