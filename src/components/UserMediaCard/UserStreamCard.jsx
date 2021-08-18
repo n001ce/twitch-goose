@@ -32,19 +32,19 @@ const UserStreamCard = ({ media, userProfile, handleAddMedia, handleRemoveMedia}
       <div>
       <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
       <Card className={classes.root} >
-      <a href={`/games/${media.id}`} className={classes.title}>
+      <a href={`/streams/${media.title.toLowerCase()}`} className={classes.title}>
       <img className={classes.image} src={newUrl} alt={media.title}/>
       <Typography variant="h5" flex-wrap>{media.title}</Typography>
       </a>
-      {/* {userProfile ? 
+       {userProfile ? 
       <MediaForm
         media={media}
         userProfile={userProfile}
-        type="game"
+        type="stream"
         handleAddMedia={handleAddMedia}
         handleRemoveMedia={handleRemoveMedia}
       /> : <div></div>
-    } */}
+    } 
     </Card> : 
   
     </Box>

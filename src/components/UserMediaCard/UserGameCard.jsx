@@ -32,7 +32,7 @@ const UserMediaCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) 
       <div>
       <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
       <Card className={classes.root} >
-      <a href={`/games/${game.id}`} className={classes.title}>
+      <a href={`/games/${game.api_id}`} className={classes.title}>
       <img className={classes.image} src={newUrl} alt={game.title}/>
       <Typography variant="h5" flex-wrap>{game.title}</Typography>
       </a>
