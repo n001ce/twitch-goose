@@ -11,6 +11,7 @@ const mediaSchema = new Schema({
   img_url: String,
   type: String,
   collectedBy: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
+  reviews: [{type: Schema.Types.ObjectId, ref: "Review"}]
 },{
   timestamps: true,
 });
