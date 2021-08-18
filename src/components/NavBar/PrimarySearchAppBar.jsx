@@ -199,7 +199,7 @@ export default function PrimarySearchAppBar({ user, handleLogout, history, handl
           <div className={classes.grow} />
           <Button size="medium" color="secondary" component={Link} to="/users">Users</Button>
           <Button size="medium" color="secondary" component={Link} to="/signup">Sign Up</Button>
-          <Button size="medium" color="secondary" component={Link} to="/login">Log In</Button>
+          <Button size="medium" color="secondary" variant="contained" component={Link} to="/login">Log In</Button>
                     </>
          )}
         </Toolbar>
