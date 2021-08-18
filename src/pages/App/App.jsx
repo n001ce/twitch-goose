@@ -17,6 +17,7 @@ import GameDetails from '../GameDetails/GameDetails'
 import StreamSearch from '../StreamSearch/StreamSearch'
 import StreamDetails from '../StreamDetails/StreamDetails'
 import EditProfile from '../ProfileDetails/EditProfile'
+import TopGamesPage from '../GameSearch/TopGamesPage'
 
 
 const light = createTheme({
@@ -183,6 +184,8 @@ class App extends Component {
 						<GameDetails
 							match={match}
 							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/> : <Redirect to='/login'/>
 					}
 				/>
@@ -193,6 +196,8 @@ class App extends Component {
 						<GameDetails
 							match={match}
 							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/> : <Redirect to='/login'/>
 					}
 				/>
@@ -203,6 +208,8 @@ class App extends Component {
 						<StreamDetails
 							match={match}
 							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/> : <Redirect to='/login'/>
 					}
 				/>
@@ -218,6 +225,17 @@ class App extends Component {
 						/> : <Redirect to='/login'/>
 					}
 				/>
+				<Route 
+					exact path="/games"
+					render={()=> 
+						authService.getUser() ? 
+						<TopGamesPage
+							userProfile={userProfile}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
+						/>
+						 : <Redirect to='/login'/>
+				}/>
 				
 				
 				

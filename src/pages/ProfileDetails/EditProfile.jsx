@@ -13,7 +13,7 @@ import UserGameCard from '../../components/UserMediaCard/UserGameCard';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { green } from '@material-ui/core/colors';
 
-const drawerWidth = 300;
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
+      },
+      drawerOpen:{
+        width: drawerWidth,
       },
     toolbar: {
         display: 'flex',
@@ -66,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
 
 const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia, handleUpdateProfile }) => {
 
-  
   const classes = useStyles();
   
   return (
@@ -76,6 +78,7 @@ const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia, handl
       <Drawer
         variant="permanent"
         className={classes.drawer}
+        classes={{paper:classes.drawerOpen}}
       >
           <div className={classes.arrowIcon}>
           <IconButton color="inherit" aria-label="close drawer"  className={classes.menuButton}>
@@ -94,10 +97,13 @@ const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia, handl
                 <ListItemText primary='Authenticate'/>
               </ListItem> */}
               <ListItem button key={2} component={Link} to='/'>
-              <Button size="small" variant="contained" color="secondary" startIcon={<DoneOutlineIcon />} fullWidth={true} type='submit'> Save Profile</Button> 
+              <Button size="small" variant="contained" color="secondary" startIcon={<DoneOutlineIcon />} fullWidth={true} > Save Profile</Button> 
               </ListItem>
           </List>
           <Divider />
+          <Box mt={2} ml={1}>
+          <Typography variant={'h6'} >My Friends</Typography>
+            </Box>
           <List>
             {userProfile?.friends?.map((pl) => (
               <ListItem button key={pl._id} onClick={() => handleRemoveFriend(pl._id)}>

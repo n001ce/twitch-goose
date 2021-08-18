@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import {Button } from '@material-ui/core';
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 class MediaForm extends Component {
   state = {
@@ -23,11 +26,11 @@ class MediaForm extends Component {
   render() { 
     return (
       <>
-        { this.props.userProfile?.media.some(media => media.api_id === this.state.formData.api_id) &&
-          <button onClick={this.handleRemoveMedia}>REMOVE</button>
+        { this.props.userProfile?.media.some(media => media.api_id === parseInt(this.state.formData.api_id)) &&
+          <Button size="small" variant="contained" startIcon={<RemoveCircleIcon />} onClick={this.handleRemoveMedia}>REMOVE</Button>
         }
-        { !this.props.userProfile?.media.some(media => media.api_id === this.state.formData.api_id) &&
-          <button onClick={this.handleAddMedia}>ADD</button>
+        { !this.props.userProfile?.media.some(media => media.api_id === parseInt(this.state.formData.api_id)) &&
+          <Button size="small" variant="contained" color="secondary" startIcon={<AddCircleIcon />} onClick={this.handleAddMedia}>ADD</Button>
         }
       </>
     );
