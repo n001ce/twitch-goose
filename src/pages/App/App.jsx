@@ -179,7 +179,7 @@ class App extends Component {
 					}
 				/>
 				<Route
-					exact path='/streams/:id'
+					exact path='/streams/:query'
 					render={({ match })=>
 						authService.getUser() ?
 						<StreamDetails

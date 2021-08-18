@@ -42,12 +42,11 @@ const UserStreamCard = ({ media, userProfile, handleRemoveMedia, edit}) => {
       <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
       {edit? <HighlightOffIcon color="error" className={classes.deleteBtn} onClick={() => handleRemoveMedia(media.api_id)}/> : <span></span>}
       <Card className={classes.root} >
-      <a href={`/games/${media.id}`} className={classes.title}>
+      <a href={`/streams/${media.title.toLowerCase()}`} className={classes.title}>
       <img className={classes.image} src={newUrl} alt={media.title}/>
       <Typography variant="h5" flex-wrap>{media.title}</Typography>
       </a>
-
-    </Card> : 
+    </Card> 
   
     </Box>
           </div>

@@ -43,7 +43,7 @@ const UserMediaCard = ({ game, userProfile, handleRemoveMedia, edit}) => {
       <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
           {edit? <HighlightOffIcon color="error" className={classes.deleteBtn} onClick={() => handleRemoveMedia(game.api_id)}/> : <span></span>}
       <Card className={classes.root} >
-      <a href={`/games/${game.id}`} className={classes.title}>
+      <a href={`/games/${game.api_id}`} className={classes.title}>
       <img className={classes.image} src={newUrl} alt={game.title}/>
       <Typography variant="h5" flex-wrap>{game.title}</Typography>
       </a>
