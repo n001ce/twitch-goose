@@ -2,6 +2,8 @@ import React from 'react'
 import MediaForm from '../MediaForm/MediaForm'
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography,Card, Box, Button } from '@material-ui/core';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -20,10 +22,18 @@ const useStyles = makeStyles((theme) => ({
   },
   image:{
     width:'180px',
+  },
+  deleteBtn:{
+    fontSize:'32px',
+    display:'flex',
+    "&:hover":{
+        transition: '0.5s',
+        transform: 'rotateZ(90deg)',
+    }
   }
 }));
 
-const UserMediaCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) => {
+const UserMediaCard = ({ game, userProfile, handleRemoveMedia, edit}) => {
   const newUrl = game.img_url?.replace('52x72','200x300')
   const classes = useStyles(); 
 
@@ -31,20 +41,12 @@ const UserMediaCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) 
     <>
       <div>
       <Box m={3} className={classes.cardContainer} justifyContent={'center'}>
+          {edit? <HighlightOffIcon color="error" className={classes.deleteBtn} onClick={() => handleRemoveMedia(game.api_id)}/> : <span></span>}
       <Card className={classes.root} >
       <a href={`/games/${game.id}`} className={classes.title}>
       <img className={classes.image} src={newUrl} alt={game.title}/>
       <Typography variant="h5" flex-wrap>{game.title}</Typography>
       </a>
-      {/* {userProfile ? 
-      <MediaForm
-        game={game}
-        userProfile={userProfile}
-        type="game"
-        handleAddMedia={handleAddMedia}
-        handleRemoveMedia={handleRemoveMedia}
-      /> : <div></div>
-    } */}
     </Card> 
   
     </Box>

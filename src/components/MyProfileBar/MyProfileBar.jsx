@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import { Link } from 'react-router-dom'
 
 
 const drawerWidth = 240;
@@ -131,7 +132,7 @@ const MyProfileBar = ({ userProfile }) => {
                 <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
                 <ListItemText primary='Authenticate'/>
               </ListItem>
-              <ListItem button key={2}>
+              <ListItem button key={2} component={Link} to='/profile/edit'>
                 <ListItemIcon><EditIcon/></ListItemIcon>
                 <ListItemText primary='Edit'/>
               </ListItem>

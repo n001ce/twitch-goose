@@ -17,7 +17,8 @@ const UserLanding = ({userProfile, location}) => {
           (media.type === 'stream')? <UserStreamCard
           key={media._id}
           media={media}
-          userProfile={userProfile}/> : <Box style={{height:'280px'}}></Box>
+          userProfile={userProfile}
+          edit={false}/> : <Box style={{height:'280px'}}></Box>
           )}
         </Grid>
       </Box>
@@ -30,7 +31,8 @@ const UserLanding = ({userProfile, location}) => {
           (game.type === 'game')? <UserGameCard
           key={game._id}
           game={game}
-          userProfile={userProfile}/> : <Box style={{height:'280px'}}></Box>
+          userProfile={userProfile}
+          edit={false}/> : <Box style={{height:'280px'}}></Box>
           )}
           </Grid>
       </Box>

@@ -16,6 +16,7 @@ import { orange } from '@material-ui/core/colors'
 import GameDetails from '../GameDetails/GameDetails'
 import StreamSearch from '../StreamSearch/StreamSearch'
 import StreamDetails from '../StreamDetails/StreamDetails'
+import EditProfile from '../ProfileDetails/EditProfile'
 
 
 const light = createTheme({
@@ -184,6 +185,19 @@ class App extends Component {
 						<StreamDetails
 							match={match}
 							userProfile={userProfile}
+						/> : <Redirect to='/login'/>
+					}
+				/>
+				<Route
+					exact path='/profile/edit'
+					render={()=> 
+						authService.getUser() ? 
+						<EditProfile
+							userProfile={userProfile}
+							handleAddFriend={this.handleAddFriend}
+							handleRemoveFriend={this.handleRemoveFriend}
+							handleAddMedia={this.handleAddMedia}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/> : <Redirect to='/login'/>
 					}
 				/>
