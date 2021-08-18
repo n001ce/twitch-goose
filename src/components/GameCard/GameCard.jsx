@@ -22,8 +22,7 @@ console.log(game)
       <img className='img-responsive' src={newUrl} alt={game.name}/>
       <Typography variant="h5" >{game.name}</Typography>
       </a>
-         
-      
+
       {userProfile ? 
       <MediaForm
         media={game}
