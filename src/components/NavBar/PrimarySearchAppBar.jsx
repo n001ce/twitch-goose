@@ -93,8 +93,8 @@ export default function PrimarySearchAppBar({ user, handleLogout, history, handl
       className={classes.menu}
     >
       <Box m={2}>
-      <MenuItem component={Link} to=''onClick={handleLogout}>Logout</MenuItem>
-      <MenuItem component={Link} to='/'>Recent Activity</MenuItem>
+      <MenuItem component={Link} to='' onClick={handleLogout}>Logout</MenuItem>
+      <MenuItem component={Link} to='/'>My Profile</MenuItem>
       <FormControlLabel
         control={
           <Switch
