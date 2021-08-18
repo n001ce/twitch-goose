@@ -3,20 +3,25 @@ import {Avatar,Box, ListItemIcon, List, ListItem, ListItemText, Typography, Divi
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import { green } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom'
+import * as profileAPI from '../../services/profileService'
 
 
 class ProfileForm extends Component {
     state = {
-        avatar: '',
+      formData: this.props.userProfile,
       }
 
     handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+      const formData = {...this.state.formData, [e.target.name]: e.target.value};
+      this.setState({
+        formData,
+      });
     }
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('check')
+        // await profileAPI.update(this.state.formData)
+        this.props.handleUpdateProfile(this.state.formData)
       }
 
 render() {
@@ -36,8 +41,6 @@ render() {
                  />
               </ListItem>
               <ListItem button key={2} type="submit">
-                {/* <ListItemIcon><DoneOutlineIcon style={{ color: green[500] }}/></ListItemIcon>
-                <ListItemText style={{ color: green[500] }} primary='Save Profile'/> */}
                 <Button size="small" variant="contained" color="secondary" startIcon={<DoneOutlineIcon />} fullWidth={true} type='submit'> Save Profile</Button> 
               </ListItem>
               </form>
