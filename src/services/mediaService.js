@@ -69,8 +69,8 @@ export function addMedia(media) {
       }, {mode: "cors"})
       .then(res => res.json())
     }
-    export function searchOneStream(id) {
-      return fetch(`${BASE_URL}searchOneStream/${id}`, {
+    export function searchOneStream(name) {
+      return fetch(`${BASE_URL}searchOneStream/${name}`, {
         headers: {
           'Authorization': `Bearer ${tokenService.getToken()}`
         },

@@ -197,6 +197,16 @@ class App extends Component {
 					}
 				/>
 				<Route
+					exact path='/streams/:query'
+					render={({ match })=>
+						authService.getUser() ?
+						<StreamDetails
+							match={match}
+							userProfile={userProfile}
+						/> : <Redirect to='/login'/>
+					}
+				/>
+				<Route
 					exact path='/profile/edit'
 					render={()=> 
 						authService.getUser() ? 
