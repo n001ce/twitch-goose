@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GameCard = ({ game, userProfile, handleAddMedia, handleRemoveMedia}) => {
-  const newUrl = game.box_art_url?.replace('{width}','200').replace('{height}','300')
+  const newUrl = game.box_art_url?.replace('{width}','200').replace('{height}','300').replace('52x72','200x300')
   const classes = useStyles();
 console.log(game)
   return (
