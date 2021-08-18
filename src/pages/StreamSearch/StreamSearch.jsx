@@ -27,6 +27,9 @@ class StreamSearch extends Component {
   render() { 
     return (
       <>
+     <MyProfileBar userProfile={this.props.userProfile} />
+     <Box ml={35} mr={5} my={3}>
+      <Typography variant={'h4'} >Streamers Results</Typography>
       <Box my={3}>
         <Grid container spacing={3}>
         {this.state.streamResults.map(stream =>
@@ -41,6 +44,7 @@ class StreamSearch extends Component {
          </Grid>
         )} 
         </Grid>
+      </Box>
       </Box>
       </>
     );

@@ -2,12 +2,16 @@ import React from 'react'
 import MediaForm from '../../components/MediaForm/MediaForm'
 // import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles';
-import {Typography } from '@material-ui/core';
+import {Typography, Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   title: {
     textDecoration:'none',
     color:theme.palette.secondary.dark,
+  },
+  cardContainer:{
+    width:'220px',
+    margin:'auto',
   },
 }));
 
@@ -17,8 +21,9 @@ const StreamerCard = ({ stream, userProfile, handleAddMedia, handleRemoveMedia})
   return (
     <>
       <div>
+      <Box m={3} className={classes.cardContainer} >
       <a href={`/streams/${stream.broadcaster_login}`} className={classes.title}>
-      <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
+      <img className='imgStream' src={stream.thumbnail_url} alt={stream.name} width="220"/>
       <Typography variant="h5" >{stream.display_name}</Typography>
       </a>
       {userProfile ? 
@@ -31,6 +36,8 @@ const StreamerCard = ({ stream, userProfile, handleAddMedia, handleRemoveMedia})
       /> : <div></div>
       
     }
+
+      </Box>
           </div>
 
     </>

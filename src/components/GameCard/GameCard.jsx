@@ -2,12 +2,16 @@ import React from 'react'
 import MediaForm from '../../components/MediaForm/MediaForm'
 // import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles';
-import {Typography } from '@material-ui/core';
+import {Typography,Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   title: {
     textDecoration:'none',
     color:theme.palette.secondary.dark,
+  },
+  cardContainer:{
+    width:'220px',
+    margin:'auto',
   },
 }));
 
@@ -18,6 +22,7 @@ console.log(game)
   return (
     <>
       <div>
+      <Box m={3} className={classes.cardContainer} >
       <a href={`/games/${game.id}`} className={classes.title}>
       <img className='img-responsive' src={newUrl} alt={game.name}/>
       <Typography variant="h5" >{game.name}</Typography>
@@ -33,6 +38,7 @@ console.log(game)
       /> : <div></div>
       
     }
+          </Box>
           </div>
 
     </>
