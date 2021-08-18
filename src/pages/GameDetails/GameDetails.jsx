@@ -12,12 +12,19 @@ class GameDetails extends Component {
   
   
   async componentDidMount() {
-    const searchResult = await mediaAPI.searchOneGame(this.props.match.params.id)
-    const streamerResult = await mediaAPI.searchStreams(searchResult[0].name)
-    this.setState({searchResult: searchResult[0], streamerResult : streamerResult.data}) 
+    const { params } = this.props.match
+    if(params.page){
+      const searchResult = await mediaAPI.searchOneGame(params.id)
+      const streamerResult = await mediaAPI.searchRandomStreams(searchResult[0].name.toLowerCase(), params.page)
+      this.setState({searchResult: searchResult[0], streamerResult: streamerResult.data})
+    }else {
+      const searchResult = await mediaAPI.searchOneGame(params.id)
+      const streamerResult = await mediaAPI.searchStreams(searchResult[0].name)
+      this.setState({searchResult: searchResult[0], streamerResult : streamerResult.data}) 
+    }
   }
   
-  render() { 
+  render(){ 
     const {searchResult, streamerResult} = this.state
     const newUrl = searchResult.box_art_url?.replace('{width}','200').replace('{height}','300')
     
