@@ -85,6 +85,14 @@ class App extends Component {
 		this.setState({ userProfile: updatedProfile })
 	}
 
+	handleUpdateProfile = async updatedProfile => {
+		const updatedPuppy = await profileAPI.update(updatedProfile);
+		this.setState(
+		  {userProfile: updatedPuppy},
+		  () => this.props.history.push('/')
+		);
+	  }
+
 	handleTheme = ()=>{
 		this.setState(({darkTheme})=>({darkTheme: !darkTheme}))
 	}
@@ -169,7 +177,7 @@ class App extends Component {
 					}
 				/>
 				<Route
-					exact path='/games/:id'
+					exact path='/games/:id/:page'
 					render={({ match })=>
 						authService.getUser() ?
 						<GameDetails
@@ -179,10 +187,10 @@ class App extends Component {
 					}
 				/>
 				<Route
-					exact path='/streams/:query'
+					exact path='/games/:id'
 					render={({ match })=>
 						authService.getUser() ?
-						<StreamDetails
+						<GameDetails
 							match={match}
 							userProfile={userProfile}
 						/> : <Redirect to='/login'/>
@@ -194,13 +202,14 @@ class App extends Component {
 						authService.getUser() ? 
 						<EditProfile
 							userProfile={userProfile}
-							handleAddFriend={this.handleAddFriend}
+							handleUpdateProfile={this.handleUpdateProfile}
 							handleRemoveFriend={this.handleRemoveFriend}
-							handleAddMedia={this.handleAddMedia}
 							handleRemoveMedia={this.handleRemoveMedia}
 						/> : <Redirect to='/login'/>
 					}
 				/>
+				
+				
 				
 			</ThemeProvider>
 			</>

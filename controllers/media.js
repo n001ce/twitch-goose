@@ -13,6 +13,7 @@ export {
   searchStreams,
   searchOneStream,
   removeMedia,
+  searchRandomStreams
 }
 
 function addMedia (req, res) {
@@ -55,7 +56,7 @@ function removeMedia(req, res) {
     .then(() => {
       Profile.findById(req.user.profile)
       .then(profile => {
-        let mediaIdx = profile.media.findIndex(media => media.id === req.body.api_id)
+        let mediaIdx = profile.media.indexOf(media._id)
         profile.media.splice(mediaIdx, 1)
         profile.save()
         profile.populate('media').populate('friends').execPopulate()
@@ -109,8 +110,13 @@ function searchStreams(req, res){
     })
 }
 
-
-
+function searchRandomStreams(req, res){
+    api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}&after=${req.params.page}`)
+    .then(response =>{
+      console.log(response.data)
+      res.json(response.data)
+    })
+}
 
 function getSchedule(req, res){
   api.get(`https://api.twitch.tv/helix/schedule?broadcaster_id=${req.params.id}`)
