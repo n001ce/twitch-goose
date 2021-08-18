@@ -36,3 +36,16 @@ export function unfriend(id) {
     { mode: "cors" }
     ).then((res) => res.json())
 }
+
+export function update(profile) {
+  return fetch(
+    `${BASE_URL}/update/${profile._id}`,
+    {
+      method: 'PUT',
+      headers: { Authorization: "Bearer " + tokenService.getToken(), 
+      'content-type': 'application/json'},
+      body: JSON.stringify(profile)
+    },
+    { mode: "cors" }
+    ).then((res) => res.json())
+}

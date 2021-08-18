@@ -16,6 +16,7 @@ import { orange } from '@material-ui/core/colors'
 import GameDetails from '../GameDetails/GameDetails'
 import StreamSearch from '../StreamSearch/StreamSearch'
 import StreamDetails from '../StreamDetails/StreamDetails'
+import EditProfile from '../ProfileDetails/EditProfile'
 
 
 const light = createTheme({
@@ -83,6 +84,14 @@ class App extends Component {
 		const updatedProfile = await profileAPI.unfriend(friendId)
 		this.setState({ userProfile: updatedProfile })
 	}
+
+	handleUpdateProfile = async updatedProfile => {
+		const updatedPuppy = await profileAPI.update(updatedProfile);
+		this.setState(
+		  {userProfile: updatedPuppy},
+		  () => this.props.history.push('/')
+		);
+	  }
 
 	handleTheme = ()=>{
 		this.setState(({darkTheme})=>({darkTheme: !darkTheme}))
@@ -184,6 +193,18 @@ class App extends Component {
 						<GameDetails
 							match={match}
 							userProfile={userProfile}
+						/> : <Redirect to='/login'/>
+					}
+				/>
+				<Route
+					exact path='/profile/edit'
+					render={()=> 
+						authService.getUser() ? 
+						<EditProfile
+							userProfile={userProfile}
+							handleUpdateProfile={this.handleUpdateProfile}
+							handleRemoveFriend={this.handleRemoveFriend}
+							handleRemoveMedia={this.handleRemoveMedia}
 						/> : <Redirect to='/login'/>
 					}
 				/>
