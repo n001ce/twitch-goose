@@ -168,7 +168,7 @@ class App extends Component {
 					}
 				/>
 				<Route
-					exact path='/games/:id'
+					exact path='/games/:id/:page'
 					render={({ match })=>
 						authService.getUser() ?
 						<GameDetails
@@ -178,15 +178,17 @@ class App extends Component {
 					}
 				/>
 				<Route
-					exact path='/streams/:query'
+					exact path='/games/:id'
 					render={({ match })=>
 						authService.getUser() ?
-						<StreamDetails
+						<GameDetails
 							match={match}
 							userProfile={userProfile}
 						/> : <Redirect to='/login'/>
 					}
 				/>
+				
+				
 				
 			</ThemeProvider>
 			</>

@@ -13,6 +13,7 @@ export {
   searchStreams,
   searchOneStream,
   removeMedia,
+  searchRandomStreams
 }
 
 function addMedia (req, res) {
@@ -109,8 +110,13 @@ function searchStreams(req, res){
     })
 }
 
-
-
+function searchRandomStreams(req, res){
+    api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}&after=${req.params.page}`)
+    .then(response =>{
+      console.log(response.data)
+      res.json(response.data)
+    })
+}
 
 function getSchedule(req, res){
   api.get(`https://api.twitch.tv/helix/schedule?broadcaster_id=${req.params.id}`)

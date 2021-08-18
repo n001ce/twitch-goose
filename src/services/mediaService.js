@@ -18,6 +18,14 @@ export function searchStreams(query) {
   }, {mode: "cors"})
   .then(res => res.json())
 }
+export function searchRandomStreams(query, page) {
+  return fetch(`${BASE_URL}searchRandomStreams/${query}/${page}`, {
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
 
 export function topGames() {
   return fetch(`${BASE_URL}topGames`)
