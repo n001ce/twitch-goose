@@ -54,8 +54,9 @@ function unfriend(req, res) {
 
 function index(req, res) {
   Profile.find({})
+  .populate('media')
+  .populate('friends')
   .then(profiles => {
-    console.log(profiles)
     res.json(profiles)
   })
 }

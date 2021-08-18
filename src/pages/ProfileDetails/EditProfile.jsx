@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import {Avatar,Box, Drawer, List, CssBaseline, Typography, Divider, IconButton, Grid, TextField } from '@material-ui/core';
+import {Avatar,Box, Drawer, List, CssBaseline, Typography, Divider, IconButton, Grid, TextField, Button } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -87,21 +87,16 @@ const EditProfile = ({ userProfile, handleRemoveFriend, handleRemoveMedia, handl
         <Avatar className={classes.avatar} alt="User Avatar" src={userProfile?.avatar} variant="rounded"/>
         <h3 className={classes.listText} >{userProfile?.name}</h3>
           </div>
-          {/* edit profile form */}
-          <ProfileForm userProfile={userProfile} handleUpdateProfile={handleUpdateProfile}/>
-          {/* <List>
-              <ListItem button key={1}>
-                <ListItemIcon>Avatar </ListItemIcon>
-                <TextField id="outlined-basic" label="Avatar url" variant="outlined"
-                name="avatar"
-                value={userProfile.avatar}
-                onChange={handleChange} />
-              </ListItem>
+          {/* <ProfileForm userProfile={userProfile} handleUpdateProfile={handleUpdateProfile}/> */}
+          <List>
+              {/* <ListItem button key={1}>
+                <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
+                <ListItemText primary='Authenticate'/>
+              </ListItem> */}
               <ListItem button key={2} component={Link} to='/'>
-                <ListItemIcon><DoneOutlineIcon style={{ color: green[500] }}/></ListItemIcon>
-                <ListItemText style={{ color: green[500] }} primary='Save Profile'/>
+              <Button size="small" variant="contained" color="secondary" startIcon={<DoneOutlineIcon />} fullWidth={true} type='submit'> Save Profile</Button> 
               </ListItem>
-          </List> */}
+          </List>
           <Divider />
           <List>
             {userProfile?.friends?.map((pl) => (
