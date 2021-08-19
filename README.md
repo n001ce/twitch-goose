@@ -1,49 +1,75 @@
-Unit-3 Project: Twitch-Goose 🎮
+# Project: Twitch-Goose 🎮
 
 
-
-Twitch-Goose 🎮!
-
-
-Introduction:
+### Introduction:
 Welcome to Twitch Goose, in this app, users are able create a profile to search for their favorite games and streamers.  Additionally, users can see a random list of streamers playing their favorite games and leave reviews for other users to see. Showing random streamers to users, helps new streamers gain exposure to help them grow their following. 
+</br>
 
-Check it out Here: https://twitch-goose.herokuapp.com/
+### Check it out Here [Launch Twitch Goose](https://twitch-goose.herokuapp.com/)
+</br>
+
+### Planning:
+Our teams planning process can be found on our Trello Board [Here](https://trello.com/b/G2Ekj0zz/twitch-app)
+
+</br>
+
+### Screenshots:
+
+</br>
+
+Landing Page
+![Landing Page](https://i.imgur.com/9exVlRH.png)
+
+Sign Up Page
+![Sign Up Page]()
+
+Login Page
+![Login Page]()
+
+Game Search Results Page
+![GameSearch Page](https://i.imgur.com/SYWXku0.png)
+
+Game Detail Page
+![Game Detail]()
 
 
-Our teams planning process can be found on our Trello Board here: https://trello.com/b/G2Ekj0zz/twitch-app
+Streamer Search Results Page
+![Streamer Search Page](https://i.imgur.com/prl1cBa.png)
 
+Streamer Detail Page
+![Login Page]()
 
-Screenshots: 
+</br>
 
+### Technologies used:
 
-Technologies used:
+#### Twitch Goose is a MERN Stack App that utilizes,
 
-Twitch Goose is a MERN Stack App that utilizes,
+    •	MongoDB, a cross-platform document-oriented database program.
 
-  •	MongoDB, a cross-platform document-oriented database program.
+    •	Express.js, a web application framework for Node.js
 
-  •	Express.js, a web application framework for Node.js
+    •	React, a JavaScript library for Building user interfaces
 
-  •	React, a JavaScript library for Building user interfaces
+    •	Node.js, an open-sourced, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser
 
-  •	Node.js, an open-sourced, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser
+    •	Twitch API: Docs at https://dev.twitch.tv
 
-  •	Twitch API: Check it out here https://dev.twitch.tv/
+    •	JWT Authentication: Docs at https://jwt.io/introduction
 
-  •	JWT Authentication 
+    •	Material UI: Docs at https://material-ui.com/
 
-  •	Material UI
+</br>
 
+### Future Goals:
 
-Future Goals:
-
-  •	Add a messege feature which allows users to send direct messeges to people in their freinds list
+    •	Add a messege feature which allows users to send direct messeges to people in their freinds list
+    
+    •	Allow users to sign in with their Twitch account credentials 
+    
+    •	Have streamers game clips populate on their streamer details page
+    
+  </br>
   
-  •	Allow users to sign in with their Twitch account credentials 
-  
-  •	Have streamers game clips populate on their streamer details page
-  
-  
-References:
+### References:
 1. Illustrations Aleksandar Savic from : https://dribbble.com/shots/13927869-Super-Nintendo
