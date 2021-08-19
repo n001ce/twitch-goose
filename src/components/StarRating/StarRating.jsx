@@ -31,13 +31,15 @@ export default function StartRating(props) {
   const [hover, setHover] = useState(-1);
   const [formData, setFormData] = useState({
     rating:'',
+    media:props?.api?.id,
+    author:props?.author,
   })
   const classes = useStyles();
 
   const formRef = React.createRef();
 
 	const handleChange = e => {
-		setFormData({ ...formData, [e.target.name]: e.target.value })
+		setFormData({ [e.target.name]: e.target.value, media:props?.api?.id,author:props?.author,} )
     setValue(e.target.value)
 	};
 
