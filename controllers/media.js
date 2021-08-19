@@ -99,7 +99,6 @@ function searchOneGame(req, res) {
 function searchOneStream(req, res) {
   api.get(`https://api.twitch.tv/helix/streams?user_id=${req.params.id}`)
   .then(response =>{
-    console.log(response.data)
     res.json(response.data)
   })
 }
@@ -107,7 +106,6 @@ function searchOneStream(req, res) {
 function searchStreams(req, res){
     api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}`)
     .then(response =>{
-      console.log(response.data)
       res.json(response.data)
     })
 }
@@ -115,7 +113,6 @@ function searchStreams(req, res){
 function searchRandomStreams(req, res){
     api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}&after=${req.params.page}`)
     .then(response =>{
-      console.log(response.data)
       res.json(response.data)
     })
 }
@@ -123,7 +120,6 @@ function searchRandomStreams(req, res){
 function getSchedule(req, res){
   api.get(`https://api.twitch.tv/helix/schedule?broadcaster_id=${req.params.id}`)
   .then(response=>{
-    console.log(response.data)
     res.json(response.data)
   })
 }

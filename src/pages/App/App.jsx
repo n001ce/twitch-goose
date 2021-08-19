@@ -70,11 +70,7 @@ class App extends Component {
 		const updatedProfile = await mediaAPI.addMedia(media)
 		this.setState({userProfile: updatedProfile})
 	  }
-	handleAddReview = async review => {
-		const updatedProfile = await mediaAPI.addReview(review)
-		this.setState({userProfile: updatedProfile})
-	  }
-	
+
 	handleRemoveMedia = async api_id => {
 		const updatedProfile = await mediaAPI.removeMedia(api_id)
 		this.setState({userProfile: updatedProfile})
@@ -214,7 +210,6 @@ class App extends Component {
 							userProfile={userProfile}
 							handleAddMedia={this.handleAddMedia}
 							handleRemoveMedia={this.handleRemoveMedia}
-							handleCreateReview={this.handleCreateReview}
 						/> : <Redirect to='/login'/>
 					}
 				/>

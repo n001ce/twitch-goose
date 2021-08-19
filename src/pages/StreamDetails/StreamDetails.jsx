@@ -3,7 +3,9 @@ import * as mediaAPI from '../../services/mediaService'
 import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
-
+import StarRating from '../../components/StarRating/StarRating'
+import ShowStarRating from '../../components/StarRating/ShowStarRating'
+import * as reviewsAPI from '../../services/reviewService'
 class StreamDetails extends Component {
   state = {
     searchResult: []
@@ -15,6 +17,22 @@ class StreamDetails extends Component {
     const searchResult = await mediaAPI.searchStreams(params.query)
     this.setState({searchResult : searchResult.data.filter(data => data.broadcaster_login === params.query)})
   }
+
+  handleAddReview = async review => {
+    const newReview = await reviewsAPI.addReview(review)
+    const searchResult = this.state.searchResult
+    searchResult.reviews.push(newReview)
+    this.setState({ searchResult })
+  }
+
+  handleDeleteReview = async id => {
+    const deletedReview = await reviewsAPI.deleteReview(id)
+    const reviewIdx = this.state.searchResult.reviews.findIndex(review => review._id === deletedReview._id)
+    const searchResult = this.state.searchResult
+    searchResult.reviews.splice(reviewIdx, 1)
+    this.setState({ searchResult })
+  }
+
 
   render() {
     const { searchResult } = this.state
@@ -68,7 +86,14 @@ class StreamDetails extends Component {
               <Box m={1}>
 
               <Typography variant={'h5'}>Reviews</Typography>
-              </Box>
+        
+            <StarRating
+              api={searchResult[0]}
+              author={this.props.userProfile_id}
+              handleAddReview={this.handleAddReview}
+              media_id={searchResult._id}
+            />
+           </Box>
 
       </Box>
       </>
