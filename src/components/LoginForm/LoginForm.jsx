@@ -36,7 +36,7 @@ class LoginForm extends Component {
         className={styles.container}
       >
         <div className={styles.inputContainer}>
-          <label htmlFor="email" className={styles.label}>Email</label>
+          {/* <label htmlFor="email" className={styles.label}>Email</label> */}
           <TextField
             type="text"
             autoComplete="off"
@@ -44,11 +44,12 @@ class LoginForm extends Component {
             value={email}
             name="email"
             onChange={this.handleChange}
-            label="Outlined"
+            label="Email"
+            variant="outlined"
           />
         </div>
         <div className={styles.inputContainer}>
-          <label htmlFor="password" className={styles.label}>Password</label>
+          {/* <label htmlFor="password" className={styles.label}>Password</label> */}
           <TextField
             type="password"
             autoComplete="off"
@@ -56,7 +57,8 @@ class LoginForm extends Component {
             value={pw}
             name="pw"
             onChange={this.handleChange}
-            label="Outlined"
+            label="Password"
+            variant="outlined"
           />
         </div>
         <div>

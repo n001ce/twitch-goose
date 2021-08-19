@@ -30,7 +30,7 @@ const LoginPage = ({ history, handleSignupOrLogin }) => {
         <Box mr={5} my={3} className={classes.root}>
         <Card  className={classes.cardContainer} >
 
-        <Typography variant={'h4'}>LOG IN</Typography>
+        <Typography variant={'h4'} color={'primary'}>LOG IN</Typography>
         <Box mr={5} my={3} >
         <Divider/>
         </Box>
