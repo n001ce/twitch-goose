@@ -41,10 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BadgeAvatar({url,live,name}) {
+export default function LetterBadgeAvatar({live,name}) {
   const classes = useStyles();
-  const newUrl = url.replace('{width}','200').replace('{height}','200')
-  console.log(newUrl)
   return (
     <>
     <div className={classes.root}>
@@ -57,9 +55,9 @@ export default function BadgeAvatar({url,live,name}) {
         }}
         variant="dot"
       >
-        <Avatar alt={name} src={newUrl} />
+        <Avatar alt={name}>{name.charAt(0)}</Avatar>
       </StyledBadge>) : (
-      <Avatar alt={name} src={newUrl} />  )}
+      <Avatar alt={name} >{name.charAt(0)}</Avatar>  )}
 
       
     </div>

@@ -28,7 +28,7 @@ class StreamDetails extends Component {
         <LiveBadge live={stream.is_live} name={stream.broadcaster_login}/>
         <Box ml={5} my={3}>
         <Grid container spacing={3}>
-        <Grid item md={6} lg={6} mx={'auto'} >
+        <Grid item md={6} lg={4} mx={'auto'} >
         <Box >
         <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
         </Box>
