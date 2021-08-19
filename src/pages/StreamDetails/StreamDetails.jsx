@@ -21,7 +21,7 @@ class StreamDetails extends Component {
   handleAddReview = async review => {
     const newReview = await reviewsAPI.addReview(review)
     const searchResult = this.state.searchResult
-    searchResult.reviews.push(newReview)
+    // searchResult.reviews.push(newReview)
     this.setState({ searchResult })
   }
 
@@ -89,9 +89,9 @@ class StreamDetails extends Component {
         
             <StarRating
               api={searchResult[0]}
-              author={this.props.userProfile_id}
+              author={this.props?.userProfile?._id}
               handleAddReview={this.handleAddReview}
-              media_id={searchResult._id}
+              media_id={searchResult.id}
             />
            </Box>
 

@@ -1,5 +1,6 @@
 import { Review } from "../models/review.js"
 import { Media } from '../models/media.js'
+import {Profile} from '../models/profile.js'
 
 export {
   create,
@@ -14,10 +15,16 @@ function deleteReview(req, res) {
 }
 
 function create(req, res) {
-  req.body.author = req.user.profile._id
-  req.body.media = req.params.id
-  Review.create(req.body)
+  const autherId=req.body.author
+  const mediaId=req.body.media
+  // console.log(req.body)
+  // console.log(autherId)
+  // console.log(mediaId)
+  // Profile.findById(autherId)
+
+  Review.create({rating:req.body.rating, mediaId:mediaId, author: {_id:req.body.author}})
   .then(review => {
+    // review.author.push({_id:req.body.auther})
     review.populate('author').populate('media').execPopulate()
     .then(()=> {
       res.json(review)
