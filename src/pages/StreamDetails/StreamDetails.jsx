@@ -4,27 +4,30 @@ import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
 import StarRating from '../../components/StarRating/StarRating'
-import ShowStarRating from '../../components/StarRating/ShowStarRating'
+import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import * as reviewsAPI from '../../services/reviewService'
 class StreamDetails extends Component {
   state = {
-    searchResult: []
+    searchResult: [{}],
   }
 
   async componentDidMount() {
     const { params } = this.props.match
-    console.log(params)
-    const searchResult = await mediaAPI.searchStreams(params.query)
-    this.setState({searchResult : searchResult.data.filter(data => data.broadcaster_login === params.query)})
+    let searchResult = await mediaAPI.searchStreams(params.query)
+    searchResult= searchResult.data.filter(data => data.broadcaster_login === params.query)
+    searchResult[0].reviews=[]
+    this.setState({searchResult : searchResult[0]})
   }
 
+  
   handleAddReview = async review => {
     const newReview = await reviewsAPI.addReview(review)
     const searchResult = this.state.searchResult
-    // searchResult.reviews.push(newReview)
+    searchResult.reviews.push(newReview)
     this.setState({ searchResult })
   }
 
+  
   handleDeleteReview = async id => {
     const deletedReview = await reviewsAPI.deleteReview(id)
     const reviewIdx = this.state.searchResult.reviews.findIndex(review => review._id === deletedReview._id)
@@ -40,39 +43,38 @@ class StreamDetails extends Component {
       <>
       <MyProfileBar userProfile={this.props.userProfile} style={{display: 'flex'}}/>
       <Box ml={32} mr={5} my={3}>
-      {searchResult.map(stream =>
         <>
-        <LiveBadge live={stream.is_live} name={stream.broadcaster_login}/>
+        <LiveBadge live={searchResult.is_live} name={searchResult.broadcaster_login}/>
         <Box ml={5} mt={3}>
         <Grid container spacing={3}>
         <Grid item md={6} lg={6} mx={'auto'} >
         <Box mb={2} >
-        <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
+        <img className='img-responsive' src={searchResult.thumbnail_url} alt={searchResult.name}/>
         </Box>
 
         </Grid>
         <Grid item md={6} lg={6} mx={'auto'} >
         <Box mt={2} >
         <Typography variant={'h5'} display={'inline'}>Language: </Typography>
-        <Chip label={stream.broadcaster_language} color="secondary" variant="outlined" />
+        <Chip label={searchResult.broadcaster_language} color="secondary" variant="outlined" />
         </Box>
         <Box mt={1} >
         <Typography variant={'h5'} display={'inline'}>Game Streaming: </Typography>
-        <Chip label={stream.game_name} color="secondary" variant="outlined" />
+        <Chip label={searchResult.game_name} color="secondary" variant="outlined" />
         </Box>
         <Box mt={1} >
         <Typography variant={'h5'} display={'inline'}>Live: </Typography>
-        <Chip label={stream.is_live ? "yes" : "no"} color="secondary" variant="outlined" />
+        <Chip label={searchResult.is_live ? "yes" : "no"} color="secondary" variant="outlined" />
         </Box>
         <Box mt={1} >
         <Typography variant={'h5'} display={'inline'}>Stream Title: </Typography>
-        <Chip label={stream.title} color="secondary" variant="outlined" />
+        <Chip label={searchResult.title} color="secondary" variant="outlined" />
 
         </Box>
-        {stream.started_at? 
+        {searchResult.started_at? 
         <Box mt={1} mb={2}>
         <Typography variant={'h5'}>Stream Started at: </Typography>
-        <Chip label={stream.started_at} color="secondary" variant="outlined" />
+        <Chip label={searchResult.started_at} color="secondary" variant="outlined" />
 
         </Box>
         :<></>}
@@ -81,18 +83,17 @@ class StreamDetails extends Component {
         </Box>
 
         </>
-      )}
               <Divider/>
               <Box m={1}>
 
               <Typography variant={'h5'}>Reviews</Typography>
-        
-            <StarRating
-              api={searchResult[0]}
-              author={this.props?.userProfile?._id}
-              handleAddReview={this.handleAddReview}
-              media_id={searchResult.id}
-            />
+                            <>
+                  <StarRating
+                    api={searchResult.id}
+                    userProfile={this.props?.userProfile?._id}
+                    handleAddReview={this.handleAddReview}
+                  />
+              </>
            </Box>
 
       </Box>
