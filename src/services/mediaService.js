@@ -77,3 +77,33 @@ export function addMedia(media) {
       }, {mode: "cors"})
       .then(res => res.json())
     }
+    export function getReviews(id) {
+      return fetch(`${BASE_URL}getReviews`, {
+        headers: {
+          'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+      }, {mode: "cors"})
+      .then(res => res.json())
+    }
+
+    export function addReview(review) {
+      return fetch(
+        `${BASE_URL}/addReview`,
+        {
+          method: 'POST',
+          headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+          body: JSON.stringify()
+        },
+        { mode: "cors" })
+        .then((res) => res.json())
+      }
+      export function removeReview() {
+        return fetch(
+          `${BASE_URL}/deleteReview`,
+          {
+            method: 'DELETE',
+            headers: {'Authorization': 'Bearer ' + tokenService.getToken()},
+          },
+          { mode: "cors" })
+          .then((res) => res.json())
+        }
