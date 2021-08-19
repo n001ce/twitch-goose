@@ -3,7 +3,6 @@ import * as mediaAPI from '../../services/mediaService'
 import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
-import ReviewCard from '../../components/ReviewCard/ReviewCard';
 
 class StreamDetails extends Component {
   state = {
@@ -26,10 +25,10 @@ class StreamDetails extends Component {
       {searchResult.map(stream =>
         <>
         <LiveBadge live={stream.is_live} name={stream.broadcaster_login}/>
-        <Box ml={5} my={3}>
+        <Box ml={5} mt={3}>
         <Grid container spacing={3}>
         <Grid item md={6} lg={6} mx={'auto'} >
-        <Box >
+        <Box mb={2} >
         <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
         </Box>
 
@@ -67,14 +66,10 @@ class StreamDetails extends Component {
       )}
               <Divider/>
               <Box m={1}>
+
               <Typography variant={'h5'}>Reviews</Typography>
               </Box>
-              <Grid container spacing={3}>
-        <Grid item md={6} lg={4} mx={'auto'} >
-{/* placeholder review card need to change {review} into actual review element*/}
-<ReviewCard review={this.props.userProfile}/>
-        </Grid>
-        </Grid>
+
       </Box>
       </>
     );
