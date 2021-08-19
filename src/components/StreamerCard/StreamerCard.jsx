@@ -23,7 +23,7 @@ const StreamerCard = ({ stream, userProfile, handleAddMedia, handleRemoveMedia})
     <>
       <div>
       <Box m={3} className={classes.cardContainer} >
-      <a href={`/streams/${stream.broadcaster_login}`} className={classes.title}>
+      <a href={`/streams/${stream.broadcaster_login}/${stream.id}`} className={classes.title}>
       <img className='imgStream' src={stream.thumbnail_url} alt={stream.name} width="220"/>
       <Typography variant="h5"  >{stream.display_name}</Typography>
       </a>

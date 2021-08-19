@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './LoginForm.module.css'
 import * as authService from '../../services/authService'
+import {Box, Grid, Card, Typography, Divider,TextField } from '@material-ui/core';
+
 
 class LoginForm extends Component {
   state = {
@@ -35,24 +37,26 @@ class LoginForm extends Component {
       >
         <div className={styles.inputContainer}>
           <label htmlFor="email" className={styles.label}>Email</label>
-          <input
+          <TextField
             type="text"
             autoComplete="off"
             id="email"
             value={email}
             name="email"
             onChange={this.handleChange}
+            label="Outlined"
           />
         </div>
         <div className={styles.inputContainer}>
           <label htmlFor="password" className={styles.label}>Password</label>
-          <input
+          <TextField
             type="password"
             autoComplete="off"
             id="password"
             value={pw}
             name="pw"
             onChange={this.handleChange}
+            label="Outlined"
           />
         </div>
         <div>
