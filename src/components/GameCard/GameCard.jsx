@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   cardContainer:{
     width:'220px',
     margin:'auto',
+    wordWrap: 'break-word',
   },
 }));
 

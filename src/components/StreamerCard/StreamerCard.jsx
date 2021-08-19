@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   cardContainer:{
     width:'220px',
     margin:'auto',
+    wordWrap: 'break-word',
   },
 }));
 
@@ -24,7 +25,7 @@ const StreamerCard = ({ stream, userProfile, handleAddMedia, handleRemoveMedia})
       <Box m={3} className={classes.cardContainer} >
       <a href={`/streams/${stream.broadcaster_login}`} className={classes.title}>
       <img className='imgStream' src={stream.thumbnail_url} alt={stream.name} width="220"/>
-      <Typography variant="h5" >{stream.display_name}</Typography>
+      <Typography variant="h5"  >{stream.display_name}</Typography>
       </a>
       {userProfile ? 
       <MediaForm
