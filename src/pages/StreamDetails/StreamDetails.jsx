@@ -3,8 +3,9 @@ import * as mediaAPI from '../../services/mediaService'
 import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
-import ReviewCard from '../../components/ReviewCard/ReviewCard';
-
+import StarRating from '../../components/StarRating/StarRating'
+import ShowStarRating from '../../components/StarRating/ShowStarRating'
+import * as reviewsAPI from '../../services/reviewService'
 class StreamDetails extends Component {
   state = {
     searchResult: []
@@ -17,6 +18,22 @@ class StreamDetails extends Component {
     this.setState({searchResult : searchResult.data.filter(data => data.broadcaster_login === params.query)})
   }
 
+  handleAddReview = async review => {
+    const newReview = await reviewsAPI.addReview(review)
+    const searchResult = this.state.searchResult
+    // searchResult.reviews.push(newReview)
+    this.setState({ searchResult })
+  }
+
+  handleDeleteReview = async id => {
+    const deletedReview = await reviewsAPI.deleteReview(id)
+    const reviewIdx = this.state.searchResult.reviews.findIndex(review => review._id === deletedReview._id)
+    const searchResult = this.state.searchResult
+    searchResult.reviews.splice(reviewIdx, 1)
+    this.setState({ searchResult })
+  }
+
+
   render() {
     const { searchResult } = this.state
     return (
@@ -26,10 +43,10 @@ class StreamDetails extends Component {
       {searchResult.map(stream =>
         <>
         <LiveBadge live={stream.is_live} name={stream.broadcaster_login}/>
-        <Box ml={5} my={3}>
+        <Box ml={5} mt={3}>
         <Grid container spacing={3}>
         <Grid item md={6} lg={6} mx={'auto'} >
-        <Box >
+        <Box mb={2} >
         <img className='img-responsive' src={stream.thumbnail_url} alt={stream.name}/>
         </Box>
 
@@ -67,14 +84,17 @@ class StreamDetails extends Component {
       )}
               <Divider/>
               <Box m={1}>
+
               <Typography variant={'h5'}>Reviews</Typography>
-              </Box>
-              <Grid container spacing={3}>
-        <Grid item md={6} lg={4} mx={'auto'} >
-{/* placeholder review card need to change {review} into actual review element*/}
-<ReviewCard review={this.props.userProfile}/>
-        </Grid>
-        </Grid>
+        
+            <StarRating
+              api={searchResult[0]}
+              author={this.props?.userProfile?._id}
+              handleAddReview={this.handleAddReview}
+              media_id={searchResult.id}
+            />
+           </Box>
+
       </Box>
       </>
     );

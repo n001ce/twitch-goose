@@ -70,7 +70,7 @@ class App extends Component {
 		const updatedProfile = await mediaAPI.addMedia(media)
 		this.setState({userProfile: updatedProfile})
 	  }
-	
+
 	handleRemoveMedia = async api_id => {
 		const updatedProfile = await mediaAPI.removeMedia(api_id)
 		this.setState({userProfile: updatedProfile})
@@ -202,7 +202,7 @@ class App extends Component {
 					}
 				/>
 				<Route
-					exact path='/streams/:query'
+					exact path='/streams/:query/:id'
 					render={({ match })=>
 						authService.getUser() ?
 						<StreamDetails
