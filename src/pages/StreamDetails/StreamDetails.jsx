@@ -13,16 +13,14 @@ class StreamDetails extends Component {
 
   async componentDidMount() {
     const { params } = this.props.match
-    let searchResult = await mediaAPI.searchOneStream(params.query)
-    searchResult= searchResult.data.filter(data => data.broadcaster_login === params.query)
-    this.setState({searchResult : searchResult[0]})
+    let searchResult = await mediaAPI.searchOneStream(params.query, params.id)
+    this.setState({searchResult})
   }
 
   
   handleAddReview = async review => {
     const newReview = await reviewsAPI.addReview(review)
     const searchResult = this.state.searchResult
-    searchResult.reviews = []
     searchResult.reviews.push(newReview)
     this.setState({ searchResult })
   }
@@ -33,7 +31,7 @@ class StreamDetails extends Component {
     const reviewIdx = this.state.searchResult.reviews.findIndex(review => review._id === deletedReview._id)
     const searchResult = this.state.searchResult
     searchResult.reviews.splice(reviewIdx, 1)
-    this.setState({ searchResult })
+    this.setState({ searchResult : searchResult.response })
   }
 
 
@@ -87,15 +85,33 @@ class StreamDetails extends Component {
               <Box m={1}>
 
               <Typography variant={'h5'}>Reviews</Typography>
-
+              {(searchResult.reviews?.length > 0) &&
+        <>
+          <h3>Reviews:</h3>
+          {searchResult.reviews?.map(review =>
+            <ReviewCard
+              userProfile={this.props.userProfile}
+              review={review}
+              handleDeleteReview={this.handleDeleteReview}
+              />
+              )}
+        </>
+        }
+        { !searchResult.reviews?.some(review => review.author._id === this.props.userProfile._id) &&
+          this.props.userProfile?.media.some(media => media._id === searchResult?._id) &&
+          <>
+            <StarRating
+              api={this.props.match.params.id}
+              media={searchResult._id}
+              userProfile={this.props?.userProfile?._id}
+              handleAddReview={this.handleAddReview}
+            />
+            
+          </>
+        }
         
           <>
              
-        <StarRating
-          api={this.props.match.params.id}
-          userProfile={this.props?.userProfile?._id}
-          handleAddReview={this.handleAddReview}
-        />
           </>
               
            </Box>
