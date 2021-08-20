@@ -21,23 +21,23 @@ Landing Page
 ![Landing Page](https://i.imgur.com/9exVlRH.png)
 
 Sign Up Page
-![Sign Up Page]()
+![Sign Up Page](https://i.imgur.com/7f7BRlG.png)
 
 Login Page
-![Login Page]()
+![Login Page](https://i.imgur.com/7lEn15u.png)
 
 Game Search Results Page
 ![GameSearch Page](https://i.imgur.com/SYWXku0.png)
 
 Game Detail Page
-![Game Detail]()
+![Game Detail](https://i.imgur.com/y3bqL4l.png)
 
 
 Streamer Search Results Page
 ![Streamer Search Page](https://i.imgur.com/prl1cBa.png)
 
 Streamer Detail Page
-![Login Page]()
+![Login Page](https://i.imgur.com/946CLJp.png)
 
 </br>
 
