@@ -53,6 +53,7 @@ export default function StartRating(props) {
   return (
     <div className={classes.root}>
       <form ref={formRef} onSubmit={handleSubmit}>
+        <Box m={3} className={classes.root}>
       <Rating
         autoComplete="off"
         name="rating"
@@ -66,8 +67,11 @@ export default function StartRating(props) {
         auto
       />
       {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+        </Box>
+        <Box ml={3} mb={1}>
       <Button size="small" variant="contained" color="secondary" startIcon={<AddCircleIcon />} type='submit' >Review</Button>
-      </form>
+        </Box>
+</form>
     </div>
   );
 }

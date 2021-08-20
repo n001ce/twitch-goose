@@ -87,12 +87,12 @@ class StreamDetails extends Component {
         </Grid>
         </Box>
 
-        </>
+        </>              
+        <Box my={2}>
               <Divider/>
+              </Box>
               <Box m={1}>
-
-              <Typography variant={'h5'}>Reviews</Typography>
-
+              <Typography variant={'h5'}>Add a Review</Typography>
           <>
              
         <StarRating
@@ -101,14 +101,19 @@ class StreamDetails extends Component {
           handleAddReview={this.handleAddReview}
         />
           </>
-              
+          <Box my={2}>
+              <Divider/>
+              </Box>
            </Box>
-           <Box m={1}>
-<Typography variant={'h5'}>Reviews</Typography>
-{this.state.reviews?.map(review=>
-<ReviewCard review={review}/>
-  )
-}
+           <Box m={2}>
+          <Typography variant={'h5'}>Reviews</Typography>
+          <Grid container spacing={3}>
+          {this.state.reviews?.map(review=>
+          <Grid item xs={12} s={12} md={6} lg={3} mx={'auto'} >
+          <ReviewCard review={review}/>
+        </Grid>
+          )}
+</Grid>
 
 </Box>
 

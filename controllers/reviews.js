@@ -9,12 +9,11 @@ export {
 }
 
 function showReview(req, res) {
-console.log(req.params)
   Review.find({api_id: req.params.id})
   .populate('author')
   .populate('media')
-  .then(profiles => {
-    res.json(profiles)
+  .then(review => {
+    res.json(review)
   })
 }
 
