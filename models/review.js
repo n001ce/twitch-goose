@@ -8,9 +8,8 @@ export {
 const reviewSchema = new Schema({
   rating: {type: Number, min: 1, max: 5},
   content: String,
-  mediaId:String,
-  media: { type: Schema.Types.ObjectId, ref: "Media" },
-  author: { type: Schema.Types.ObjectId, ref: "Profile" },
+  api_id: String,
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "Profile" },
 },{
   timestamps: true,
 })

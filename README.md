@@ -13,9 +13,9 @@ Our teams planning process can be found on our Trello Board [Here](https://trell
 
 </br>
 
-### Screenshots: 
-</br>
+### Screenshots:
 
+</br>
 
 Landing Page
 ![Landing Page](https://i.imgur.com/9exVlRH.png)
@@ -42,10 +42,8 @@ Streamer Detail Page
 </br>
 
 ### Technologies used:
-</br>
 
 #### Twitch Goose is a MERN Stack App that utilizes,
-
 
     •	MongoDB, a cross-platform document-oriented database program.
 
@@ -75,3 +73,4 @@ Streamer Detail Page
   
 ### References:
 1. Illustrations Aleksandar Savic from : https://dribbble.com/shots/13927869-Super-Nintendo
+2. Video by Nguyen Nhut from: https://dribbble.com/nguyenhut

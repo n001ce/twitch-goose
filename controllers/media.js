@@ -15,7 +15,7 @@ export {
   searchOneStream,
   removeMedia,
   searchRandomStreams,
-  createReview
+
 }
 
 function addMedia (req, res) {
@@ -97,10 +97,21 @@ function searchOneGame(req, res) {
 }
 
 function searchOneStream(req, res) {
-  api.get(`https://api.twitch.tv/helix/streams?user_id=${req.params.id}`)
-  .then(response =>{
-    res.json(response.data)
-  })
+  api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}`)
+    .then(response =>{
+      Media.findOne({api_id : response.id})
+      .then(media=>{
+        Review.find({media: media.id})
+        .populate('author')
+        .populate('media')
+        .then(reviews=>{
+          response.data.reviews = reviews
+          response.data.id = media.id ? media.id : ""
+          res.json(response.data)
+          console.log(response.data)
+        })
+      })
+    })
 }
 
 function searchStreams(req, res){
@@ -117,27 +128,3 @@ function searchRandomStreams(req, res){
     })
 }
 
-function getSchedule(req, res){
-  api.get(`https://api.twitch.tv/helix/schedule?broadcaster_id=${req.params.id}`)
-  .then(response=>{
-    res.json(response.data)
-  })
-}
-function createReview(req, res) {
-  // Add author/game info to req.body (for when we use model.create)
-  req.body.author = req.user.profile._id
-  req.body.media = req.params.id
-  // Create the review
-  Review.create(req.body)
-  .then(review => {
-    // Add the review reference to the Streamer
-    Media.findById(req.body.media)
-    .then(media => {
-      media.reviews.push(review._id)
-      media.save()
-      .then(() => {
-        res.redirect(`back`)
-      })
-    })
-  })
-}
