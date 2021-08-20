@@ -73,3 +73,4 @@ Streamer Detail Page
   
 ### References:
 1. Illustrations Aleksandar Savic from : https://dribbble.com/shots/13927869-Super-Nintendo
+2. Video by Nguyen Nhut from: https://dribbble.com/nguyenhut
