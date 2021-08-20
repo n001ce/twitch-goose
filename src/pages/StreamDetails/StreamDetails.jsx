@@ -15,7 +15,6 @@ class StreamDetails extends Component {
     const { params } = this.props.match
     let searchResult = await mediaAPI.searchStreams(params.query)
     searchResult= searchResult.data.filter(data => data.broadcaster_login === params.query)
-    searchResult[0].reviews=[]
     this.setState({searchResult : searchResult[0]})
   }
 
@@ -23,6 +22,7 @@ class StreamDetails extends Component {
   handleAddReview = async review => {
     const newReview = await reviewsAPI.addReview(review)
     const searchResult = this.state.searchResult
+    searchResult.reviews = []
     searchResult.reviews.push(newReview)
     this.setState({ searchResult })
   }
@@ -87,10 +87,23 @@ class StreamDetails extends Component {
               <Box m={1}>
 
               <Typography variant={'h5'}>Reviews</Typography>
+
+              {(searchResult.reviews?.length > 0) &&
+        <>
+          <h3>Reviews:</h3>
+          {searchResult.reviews?.forEach(review =>
+            <ReviewCard
+              review={review}
+              handleDeleteReview={this.handleDeleteReview}
+              media={this.props.match.params}
+              />
+              )}
+        </>
+        }
                             <>
                   <StarRating
-                    api={searchResult.id}
-                    userProfile={this.props?.userProfile?._id}
+                    api={this.props.match.params.id}
+                    userProfile={this.props?.userProfile}
                     handleAddReview={this.handleAddReview}
                   />
               </>

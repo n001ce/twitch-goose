@@ -106,7 +106,17 @@ function searchOneStream(req, res) {
 function searchStreams(req, res){
     api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}`)
     .then(response =>{
-      res.json(response.data)
+      Media.findOne({api_id : response.data.id})
+      .then(media=>{
+        Review.find({media: media.id})
+        .populate('author')
+        .populate('media')
+        .then(reviews=>{
+          response.data.reviews = reviews
+          response.data.id = media.id ? media.id : ""
+          res.json(response.data)
+        })
+      })
     })
 }
 
