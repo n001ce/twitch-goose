@@ -39,7 +39,7 @@ export default function StartRating(props) {
   const formRef = React.createRef();
 
 	const handleChange = e => {
-		setFormData({ ...formData, [e.target.name]: e.target.value })
+		setFormData({ api_id: props.api,author: props?.userProfile, [e.target.name]: e.target.value })
     setValue(e.target.value)
 	};
 
@@ -47,12 +47,13 @@ export default function StartRating(props) {
 		e.preventDefault();
     console.log(formData)
     props.handleAddReview(formData)
-
+    setValue(0)
   };
 
   return (
     <div className={classes.root}>
       <form ref={formRef} onSubmit={handleSubmit}>
+        <Box m={3} className={classes.root}>
       <Rating
         autoComplete="off"
         name="rating"
@@ -66,8 +67,11 @@ export default function StartRating(props) {
         auto
       />
       {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+        </Box>
+        <Box ml={3} mb={1}>
       <Button size="small" variant="contained" color="secondary" startIcon={<AddCircleIcon />} type='submit' >Review</Button>
-      </form>
+        </Box>
+</form>
     </div>
   );
 }

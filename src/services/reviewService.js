@@ -26,3 +26,13 @@ export function deleteReview(id) {
     { mode: "cors" })
   .then((res) => res.json())
 }
+
+export function showStreamReviews(api_id) {
+  return fetch(
+    `${BASE_URL}${api_id}`,
+    {
+      headers: {'Authorization': 'Bearer ' + tokenService.getToken()},
+    },
+    { mode: "cors" })
+  .then((res) => res.json())
+}

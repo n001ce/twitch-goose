@@ -15,3 +15,4 @@ const router = Router();
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, reviewsCtrl.create)
 router.delete('/:id', checkAuth, reviewsCtrl.delete)
+router.get('/:id', checkAuth, reviewsCtrl.showReview)

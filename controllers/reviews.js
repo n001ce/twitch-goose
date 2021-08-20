@@ -4,7 +4,17 @@ import {Profile} from '../models/profile.js'
 
 export {
   create,
-  deleteReview as delete
+  deleteReview as delete,
+  showReview,
+}
+
+function showReview(req, res) {
+  Review.find({api_id: req.params.id})
+  .populate('author')
+  .populate('media')
+  .then(review => {
+    res.json(review)
+  })
 }
 
 function deleteReview(req, res) {

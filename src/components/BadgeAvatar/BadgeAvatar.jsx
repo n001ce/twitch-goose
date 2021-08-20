@@ -43,8 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BadgeAvatar({url,live,name}) {
   const classes = useStyles();
-  const newUrl = url.replace('{width}','200').replace('{height}','200')
-  console.log(newUrl)
+  const newUrl = url?.replace('{width}','200').replace('{height}','200')
   return (
     <>
     <div className={classes.root}>

@@ -1,30 +1,35 @@
 import React, { Component } from 'react'
 import * as mediaAPI from '../../services/mediaService'
+import * as reviewAPI from '../../services/reviewService'
 import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
 import StarRating from '../../components/StarRating/StarRating'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import * as reviewsAPI from '../../services/reviewService'
+
 class StreamDetails extends Component {
   state = {
     searchResult: [{}],
+    reviews:[]
   }
 
   async componentDidMount() {
     const { params } = this.props.match
     let searchResult = await mediaAPI.searchOneStream(params.query)
+    let streamReviews = await reviewAPI.showStreamReviews(this.props.match.params.id)
     searchResult= searchResult.data.filter(data => data.broadcaster_login === params.query)
-    this.setState({searchResult : searchResult[0]})
+    this.setState({searchResult : searchResult[0], reviews:streamReviews})
   }
 
   
   handleAddReview = async review => {
     const newReview = await reviewsAPI.addReview(review)
+    let streamReviews = await reviewAPI.showStreamReviews(this.props.match.params.id)
     const searchResult = this.state.searchResult
     searchResult.reviews = []
     searchResult.reviews.push(newReview)
-    this.setState({ searchResult })
+    this.setState({ searchResult: searchResult, reviews:streamReviews })
   }
 
   
@@ -82,13 +87,12 @@ class StreamDetails extends Component {
         </Grid>
         </Box>
 
-        </>
+        </>              
+        <Box my={2}>
               <Divider/>
+              </Box>
               <Box m={1}>
-
-              <Typography variant={'h5'}>Reviews</Typography>
-
-        
+              <Typography variant={'h5'}>Add a Review</Typography>
           <>
              
         <StarRating
@@ -97,8 +101,21 @@ class StreamDetails extends Component {
           handleAddReview={this.handleAddReview}
         />
           </>
-              
+          <Box my={2}>
+              <Divider/>
+              </Box>
            </Box>
+           <Box m={2}>
+          <Typography variant={'h5'}>Reviews</Typography>
+          <Grid container spacing={3}>
+          {this.state.reviews?.map(review=>
+          <Grid item xs={12} s={12} md={6} lg={3} mx={'auto'} >
+          <ReviewCard review={review}/>
+        </Grid>
+          )}
+</Grid>
+
+</Box>
 
       </Box>
       </>
