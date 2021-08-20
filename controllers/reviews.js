@@ -4,8 +4,9 @@ import {Profile} from '../models/profile.js'
 
 export {
   create,
-  deleteReview as delete
+  deleteReview as delete,
 }
+
 
 function deleteReview(req, res) {
   Review.findByIdAndDelete(req.params.id)

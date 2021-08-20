@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SignupForm.module.css'
 import * as authService from '../../services/authService'
+import {Box,  Button, TextField } from '@material-ui/core';
 
 class SignupForm extends Component {
   state = {
@@ -44,56 +45,60 @@ class SignupForm extends Component {
         className={styles.container}
       >
         <div className={styles.inputContainer}>
-          <label htmlFor="name" className={styles.label}>
+          {/* <label htmlFor="name" className={styles.label}>
             Name
-          </label>
-          <input
+          </label> */}
+          <TextField
             type="text"
             autoComplete="off"
             id="name"
             value={name}
             name="name"
             onChange={this.handleChange}
+            label="Name"
+            variant="outlined"
           />
         </div>
         <div className={styles.inputContainer}>
-          <label htmlFor="email" className={styles.label}>Email</label>
-          <input
+          <TextField
             type="text"
             autoComplete="off"
             id="email"
             value={email}
             name="email"
             onChange={this.handleChange}
+            label="Email"
+            variant="outlined"
           />
         </div>
         <div className={styles.inputContainer}>
-          <label htmlFor="password" className={styles.label}>Password</label>
-          <input
+          <TextField
             type="password"
             autoComplete="off"
             id="password"
             value={password}
             name="password"
             onChange={this.handleChange}
+            label="Password"
+            variant="outlined"
           />
         </div>
         <div className={styles.inputContainer}>
-          <label htmlFor="confirm" className={styles.label}>Confirm Password</label>
-          <input
+          <TextField
             type="password"
             autoComplete="off"
             id="confirm"
             value={passwordConf}
             name="passwordConf"
             onChange={this.handleChange}
+            label="Confirm Password"
+            variant="outlined"
           />
         </div>
         <div className={styles.inputContainer}>
-          <button disabled={this.isFormInvalid()} className={styles.button}>Sign Up</button>
-          <Link to="/">
-            <button>Cancel</button>
-          </Link>
+          <Button className={styles.Button} color={'primary'} variant="outlined" type='submit' disabled={this.isFormInvalid()} >Sign Up</Button>
+          <Button component={Link} to="/"color={'primary'}variant="outlined" >Cancel</Button>
+
         </div>
       </form>
     )

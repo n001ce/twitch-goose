@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import * as mediaAPI from '../../services/mediaService'
+import * as reviewAPI from '../../services/reviewService'
 import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
 import StarRating from '../../components/StarRating/StarRating'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import * as reviewsAPI from '../../services/reviewService'
+
 class StreamDetails extends Component {
   state = {
     searchResult: [{}],
+    reviews:[]
   }
 
   async componentDidMount() {
@@ -31,7 +34,7 @@ class StreamDetails extends Component {
     const reviewIdx = this.state.searchResult.reviews.findIndex(review => review._id === deletedReview._id)
     const searchResult = this.state.searchResult
     searchResult.reviews.splice(reviewIdx, 1)
-    this.setState({ searchResult : searchResult.response })
+    this.setState({ searchResult})
   }
 
 
@@ -80,8 +83,10 @@ class StreamDetails extends Component {
         </Grid>
         </Box>
 
-        </>
+        </>              
+        <Box my={2}>
               <Divider/>
+              </Box>
               <Box m={1}>
 
               <Typography variant={'h5'}>Reviews</Typography>
@@ -113,8 +118,21 @@ class StreamDetails extends Component {
           <>
              
           </>
-              
+          <Box my={2}>
+              <Divider/>
+              </Box>
            </Box>
+           <Box m={2}>
+          <Typography variant={'h5'}>Reviews</Typography>
+          <Grid container spacing={3}>
+          {this.state.reviews?.map(review=>
+          <Grid item xs={12} s={12} md={6} lg={3} mx={'auto'} >
+          <ReviewCard review={review}/>
+        </Grid>
+          )}
+</Grid>
+
+</Box>
 
       </Box>
       </>

@@ -31,13 +31,6 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-const SmallAvatar = withStyles((theme) => ({
-  root: {
-    width: 22,
-    height: 22,
-    border: `2px solid ${theme.palette.background.paper}`,
-  },
-}))(Avatar);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,8 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BadgeAvatar({url,live,name}) {
   const classes = useStyles();
-  const newUrl = url.replace('{width}','200').replace('{height}','200')
-  console.log(newUrl)
+  const newUrl = url?.replace('{width}','200').replace('{height}','200')
   return (
     <>
     <div className={classes.root}>

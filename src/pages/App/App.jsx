@@ -31,7 +31,15 @@ const light = createTheme({
 		appBar: 1251,
 		modal: 1250,
 		drawer: 1200,
-	  }
+	  },
+	// typography:{
+	// 	fontFamily:'Montserrat',
+	// 	fontWeightLight:200,
+	// 	fontWeightRegular:400,
+	// 	fontWeightMedium:600,
+	// 	fontWeightBold:800,
+
+	// }
 })
 
 const dark = createTheme({

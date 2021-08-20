@@ -13,7 +13,11 @@ const ProfileDetails = ({ location, userProfile }) => {
     <>
       <MyProfileBar userProfile={userProfile} style={{display: 'flex'}}/>
       <Box ml={35} mr={5} my={3}>
+
       <ProfileAvatarCard url={profile.avatar} live={true} name={profile.name} />
+      <Box my={1}>
+      <Divider/>
+      </Box>
       <Typography variant={'h5'} >Streamers {profile.name} follows</Typography>
         <Box my={3}>
         <Grid container spacing={3}>
@@ -28,7 +32,7 @@ const ProfileDetails = ({ location, userProfile }) => {
       </Box>
         <Divider/>
         <Box my={2}>
-        <Typography variant={'h5'} >{profile.name}'s' Games</Typography>
+        <Typography variant={'h5'} >{profile.name}'s Games</Typography>
         <Box my={3}>
         <Grid container spacing={3}>
         {profile?.media?.map(game=>

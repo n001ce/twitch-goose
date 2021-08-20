@@ -128,10 +128,7 @@ const MyProfileBar = ({ userProfile }) => {
         <h3 className={classes.listText} >{userProfile?.name}</h3>
           </div>
           <List>
-              <ListItem button key={1}>
-                <ListItemIcon><DoneOutlineIcon/></ListItemIcon>
-                <ListItemText primary='Authenticate'/>
-              </ListItem>
+              
               <ListItem button key={2} component={Link} to='/profile/edit'>
                 <ListItemIcon><EditIcon/></ListItemIcon>
                 <ListItemText primary='Edit'/>
