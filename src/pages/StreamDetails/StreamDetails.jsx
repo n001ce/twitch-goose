@@ -16,17 +16,20 @@ class StreamDetails extends Component {
 
   async componentDidMount() {
     const { params } = this.props.match
+    const streamReviews = await reviewAPI.showStreamReviews(this.props.match.params.id)
     let searchResult = await mediaAPI.searchOneStream(params.query, params.id)
-    this.setState({searchResult})
+    this.setState({searchResult, reviews: streamReviews})
   }
 
   
   handleAddReview = async review => {
-    const newReview = await reviewsAPI.addReview(review)
-    const searchResult = this.state.searchResult
-    searchResult.reviews.push(newReview)
-    this.setState({ searchResult })
-  }
+      const newReview = await reviewsAPI.addReview(review)
+      const streamReviews = await reviewAPI.showStreamReviews(this.props.match.params.id)
+      const searchResult = this.state.searchResult
+      searchResult.reviews.push(newReview)
+      this.setState({ searchResult, reviews:streamReviews })
+    }
+  
 
   
   handleDeleteReview = async id => {
@@ -39,7 +42,7 @@ class StreamDetails extends Component {
 
 
   render() {
-    const { searchResult } = this.state
+    const { searchResult, reviews } = this.state
     return (
       <>
       <MyProfileBar userProfile={this.props.userProfile} style={{display: 'flex'}}/>
@@ -90,19 +93,18 @@ class StreamDetails extends Component {
               <Box m={1}>
 
               <Typography variant={'h5'}>Reviews</Typography>
-              {(searchResult.reviews?.length > 0) &&
-        <>
-          <h3>Reviews:</h3>
-          {searchResult.reviews?.map(review =>
+          <Grid container spacing={3}>
+          {reviews?.map(review=> 
+          <Grid item xs={12} s={12} md={6} lg={3} mx={'auto'} >
             <ReviewCard
               userProfile={this.props.userProfile}
               review={review}
               handleDeleteReview={this.handleDeleteReview}
               />
+       
+              </Grid>
               )}
-        </>
-        }
-        { !searchResult.reviews?.some(review => review.author._id === this.props.userProfile._id) &&
+        { !reviews?.some(review => review.author._id === this.props.userProfile._id) &&
           this.props.userProfile?.media.some(media => media._id === searchResult?._id) &&
           <>
             <StarRating
@@ -118,18 +120,7 @@ class StreamDetails extends Component {
           <>
              
           </>
-          <Box my={2}>
-              <Divider/>
-              </Box>
-           </Box>
-           <Box m={2}>
-          <Typography variant={'h5'}>Reviews</Typography>
-          <Grid container spacing={3}>
-          {this.state.reviews?.map(review=>
-          <Grid item xs={12} s={12} md={6} lg={3} mx={'auto'} >
-          <ReviewCard review={review}/>
-        </Grid>
-          )}
+                   
 </Grid>
 
 </Box>
