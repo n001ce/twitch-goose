@@ -13,7 +13,7 @@ class StreamDetails extends Component {
 
   async componentDidMount() {
     const { params } = this.props.match
-    let searchResult = await mediaAPI.searchStreams(params.query)
+    let searchResult = await mediaAPI.searchOneStream(params.query)
     searchResult= searchResult.data.filter(data => data.broadcaster_login === params.query)
     this.setState({searchResult : searchResult[0]})
   }
@@ -88,25 +88,16 @@ class StreamDetails extends Component {
 
               <Typography variant={'h5'}>Reviews</Typography>
 
-              {(searchResult.reviews?.length > 0) &&
-        <>
-          <h3>Reviews:</h3>
-          {searchResult.reviews?.forEach(review =>
-            <ReviewCard
-              review={review}
-              handleDeleteReview={this.handleDeleteReview}
-              media={this.props.match.params}
-              />
-              )}
-        </>
-        }
-                            <>
-                  <StarRating
-                    api={this.props.match.params.id}
-                    userProfile={this.props?.userProfile}
-                    handleAddReview={this.handleAddReview}
-                  />
-              </>
+        
+          <>
+             
+        <StarRating
+          api={this.props.match.params.id}
+          userProfile={this.props?.userProfile?._id}
+          handleAddReview={this.handleAddReview}
+        />
+          </>
+              
            </Box>
 
       </Box>
