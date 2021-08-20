@@ -97,10 +97,21 @@ function searchOneGame(req, res) {
 }
 
 function searchOneStream(req, res) {
-  api.get(`https://api.twitch.tv/helix/streams?user_id=${req.params.id}`)
-  .then(response =>{
-    res.json(response.data)
-  })
+  api.get(`https://api.twitch.tv/helix/search/channels?query=${req.params.query}`)
+    .then(response =>{
+      Media.findOne({api_id : response.id})
+      .then(media=>{
+        Review.find({media: media.id})
+        .populate('author')
+        .populate('media')
+        .then(reviews=>{
+          response.data.reviews = reviews
+          response.data.id = media.id ? media.id : ""
+          res.json(response.data)
+          console.log(response.data)
+        })
+      })
+    })
 }
 
 function searchStreams(req, res){

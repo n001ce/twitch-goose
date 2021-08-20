@@ -18,6 +18,7 @@ const ReviewCard = ({ review }) => {
         {/* <BadgeAvatar url={review?.avatar} live={true} name={review?.name}/> */}
         <Typography variant={'subtitle1'}>Author: {review?.name}</Typography>
         <ShowStarRating rating={4.5}/>
+        <ShowStarRating rating={review.rating} author={review.author}/>
         </Box>
         </Card>
 
