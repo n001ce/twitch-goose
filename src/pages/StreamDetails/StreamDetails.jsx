@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import * as mediaAPI from '../../services/mediaService'
+import * as reviewAPI from '../../services/reviewService'
 import {Box, Grid, Typography, Divider,Chip } from '@material-ui/core';
 import MyProfileBar from '../../components/MyProfileBar/MyProfileBar'
 import LiveBadge from '../../components/BadgeAvatar/LiveBadge';
 import StarRating from '../../components/StarRating/StarRating'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import * as reviewsAPI from '../../services/reviewService'
+
 class StreamDetails extends Component {
   state = {
     searchResult: [{}],
+    reviews:[]
   }
 
   async componentDidMount() {
     const { params } = this.props.match
     let searchResult = await mediaAPI.searchOneStream(params.query)
+    let streamReviews = await reviewAPI.showStreamReviews(this.props.match.params.id)
     searchResult= searchResult.data.filter(data => data.broadcaster_login === params.query)
-    this.setState({searchResult : searchResult[0]})
+    this.setState({searchResult : searchResult[0], reviews:streamReviews})
   }
 
   
@@ -93,7 +97,7 @@ class StreamDetails extends Component {
              
         <StarRating
           api={this.props.match.params.id}
-          userProfile={this.props?.userProfile?._id}
+          userProfile={this.props?.userProfile}
           handleAddReview={this.handleAddReview}
         />
           </>
