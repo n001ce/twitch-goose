@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './LoginForm.module.css'
 import * as authService from '../../services/authService'
-import {Box, Grid, Card, Typography, Divider,TextField } from '@material-ui/core';
+import {Box, Button, TextField } from '@material-ui/core';
 
 
 class LoginForm extends Component {
@@ -62,10 +62,8 @@ class LoginForm extends Component {
           />
         </div>
         <div>
-          <button className={styles.button}>Log In</button>
-          <Link to="/">
-            <button>Cancel</button>
-          </Link>
+          <Button className={styles.Button} color={'primary'} variant="outlined" type='submit'>Log In</Button>
+          <Button component={Link} to="/"color={'primary'}variant="outlined" >Cancel</Button>
         </div>
       </form>
     )

@@ -15,14 +15,7 @@ function deleteReview(req, res) {
 }
 
 function create(req, res) {
-  const autherId=req.body.author
-  const mediaId=req.body.media
-  // console.log(req.body)
-  // console.log(autherId)
-  // console.log(mediaId)
-  // Profile.findById(autherId)
-
-  Review.create({rating:req.body.rating, mediaId:mediaId, author: {_id:req.body.author}})
+  Review.create(req.body)
   .then(review => {
     review.populate('author').populate('media').execPopulate()
     .then(()=> {
