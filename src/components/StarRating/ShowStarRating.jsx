@@ -34,7 +34,7 @@ export default function ShowStarRating({rating}) {
         name="hover-feedback"
         value={rating}
         precision={0.5}
-        
+        readOnly
       />
       {rating !== null && <Box ml={2}>{labels[rating]}</Box>}
     </div>

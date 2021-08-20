@@ -25,10 +25,11 @@ class StreamDetails extends Component {
   
   handleAddReview = async review => {
     const newReview = await reviewsAPI.addReview(review)
+    let streamReviews = await reviewAPI.showStreamReviews(this.props.match.params.id)
     const searchResult = this.state.searchResult
     searchResult.reviews = []
     searchResult.reviews.push(newReview)
-    this.setState({ searchResult })
+    this.setState({ searchResult: searchResult, reviews:streamReviews })
   }
 
   
@@ -92,17 +93,24 @@ class StreamDetails extends Component {
 
               <Typography variant={'h5'}>Reviews</Typography>
 
-        
           <>
              
         <StarRating
           api={this.props.match.params.id}
-          userProfile={this.props?.userProfile}
+          userProfile={this.props?.userProfile?._id}
           handleAddReview={this.handleAddReview}
         />
           </>
               
            </Box>
+           <Box m={1}>
+<Typography variant={'h5'}>Reviews</Typography>
+{this.state.reviews?.map(review=>
+<ReviewCard review={review}/>
+  )
+}
+
+</Box>
 
       </Box>
       </>

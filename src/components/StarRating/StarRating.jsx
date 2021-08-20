@@ -31,7 +31,7 @@ export default function StartRating(props) {
   const [hover, setHover] = useState(-1);
   const [formData, setFormData] = useState({
     api_id: props.api,
-    author: props?.userProfile?._id,
+    author: props?.userProfile,
     rating:'',
   })
   const classes = useStyles();
@@ -39,7 +39,7 @@ export default function StartRating(props) {
   const formRef = React.createRef();
 
 	const handleChange = e => {
-		setFormData({ ...formData, [e.target.name]: e.target.value })
+		setFormData({ api_id: props.api,author: props?.userProfile, [e.target.name]: e.target.value })
     setValue(e.target.value)
 	};
 
@@ -47,7 +47,7 @@ export default function StartRating(props) {
 		e.preventDefault();
     console.log(formData)
     props.handleAddReview(formData)
-
+    setValue(0)
   };
 
   return (

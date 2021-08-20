@@ -55,9 +55,9 @@ export default function LetterBadgeAvatar({live,name}) {
         }}
         variant="dot"
       >
-        <Avatar alt={name}>{name.charAt(0)}</Avatar>
+        <Avatar alt={name} >{name?.charAt(0)}</Avatar>
       </StyledBadge>) : (
-      <Avatar alt={name} >{name.charAt(0)}</Avatar>  )}
+      <Avatar alt={name} >{name?.charAt(0)}</Avatar>  )}
 
       
     </div>
